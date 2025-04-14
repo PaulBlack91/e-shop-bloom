@@ -3,10 +3,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#B50FC9",
+        primary: "#866CEB",
         secondary: "#F5D9FB",
-        accent: "#F9D36F",
+        accent: "#0CE9E3", 
         dark: "#1D1D1B",
+        
       },
       fontFamily: {
         sans: ["Helvetica", "Arial", "sans-serif"],

@@ -4,48 +4,59 @@ import img from "../assets/Helados.png";
 export default function Hero() {
   return (
     <section
-      className="pt-5 pb-5 bg-cover bg-center bg-no-repeat text-dark"
-      style={{ backgroundImage: "url('public/bg.jpg')" }}
+      className="pt-28 pb-16 bg-cover bg-center bg-no-repeat text-dark"
+      style={{ backgroundImage: "url('/bg.jpg')" }}
     >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-10">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
+        
         {/* Texto */}
-        <div className="md:w-1/2 text-center md:text-left">
+        <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-1">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             ¡Descubrí el mundo de la cosmética natural con{" "}
             <span className="text-primary">#ÉxitoEnUnPote!</span>
           </h2>
+
           <p className="mb-6 text-lg md:text-xl">
             Un curso 100% online para que aprendas desde cero a crear productos
-            // naturales, tanto para cuidarte como para emprender. No importa si
-            sos // principiante o si ya experimentaste con recetas, acá vas a
-            encontrar // una guía completa para dominar la cosmética natural con
+            naturales, tanto para cuidarte como para emprender. No importa si
+            sos principiante o si ya experimentaste con recetas, acá vas a
+            encontrar una guía completa para dominar la cosmética natural con
             confianza.
           </p>
-          <button
-            onClick={() => {
-              const el = document.getElementById("inscripcion");
-              if (el) {
-                scrollIntoView(el, {
-                  time: 1000, // duración del scroll (en ms)
-                  align: { top: 0, topOffset: 80 }, // para compensar el header fijo
-                });
-              }
-            }}
-            className="bg-accent text-dark font-bold px-6 py-3"
-          >
-            ¡Inscribite ahora!
-          </button>
+
+          {/* Botón (solo se mueve en mobile) */}
+          <div className="mt-20 flex justify-center order-3 md:order-3">
+            <button
+              onClick={() => {
+                const el = document.getElementById("inscripcion");
+                if (el) {
+                  scrollIntoView(el, {
+                    time: 1000,
+                    align: { top: 0, topOffset: 80 },
+                  });
+                }
+              }}
+              className="bg-accent text-white font-bold text-lg md:text-4xl px-12 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
+            >
+              ¡Inscribite ahora!
+            </button>
+          </div>
         </div>
 
-        {/* Imagen */}
-        <div className="flex items-center justify-center min-h-screen">
+        {/* Imagen (solo cambia posición en mobile) */}
+        <div className="w-full md:w-1/2 flex justify-center items-center order-2 md:order-2">
           <img
             src={img}
             alt="Hero"
-            className="w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[450px]"
+            className="w-full max-w-[500px] sm:max-w-[550px] lg:max-w-[650px] xl:max-w-[700px] mx-auto"
           />
         </div>
       </div>
     </section>
   );
 }
+
+
+
+
+
