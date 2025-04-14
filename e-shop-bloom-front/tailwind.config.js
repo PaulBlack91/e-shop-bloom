@@ -7,14 +7,23 @@ export default {
         secondary: "#F5D9FB",
         accent: "#0CE9E3",
         dark: "#1D1D1B",
-        bgrosa: "#F5D9FB",
+        bgrosa: "#F9F0FF",
 
       },
       fontFamily: {
         sans: ["Helvetica", "Arial", "sans-serif"],
         georgia: ['Georgia', 'serif'],
-        raleway: ['Raleway', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
 
+      },
+      animation: {
+        'fade-slide': 'fadeSlide 1s ease-out forwards',
+      },
+      keyframes: {
+        fadeSlide: {
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+        },
       },
     },
   },

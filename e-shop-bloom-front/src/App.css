@@ -1,0 +1,8 @@
+ 
+.fade-in {
+    @apply opacity-0 transition-all duration-1000;
+  }
+  
+  .fade-in.animate-fade-slide {
+    @apply animate-fade-slide;
+  }

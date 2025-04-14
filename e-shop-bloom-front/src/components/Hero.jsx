@@ -1,14 +1,32 @@
 import scrollIntoView from "scroll-into-view";
 import img from "../assets/Helados.png";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sectionRef.current.classList.add("animate-fade-slide");
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
-      className="pt-28 pb-16 bg-cover bg-center bg-no-repeat text-dark"
+      ref={sectionRef}
+      className="pt-28 pb-16 bg-cover bg-center bg-no-repeat text-dark "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
-        
         {/* Texto */}
         <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-1">
           <h2 className="text-4xl md:text-6xl text-center font-georgia italic  mb-10 leading-tight">
@@ -55,8 +73,3 @@ export default function Hero() {
     </section>
   );
 }
-
-
-
-
-

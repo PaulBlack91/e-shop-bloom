@@ -2,9 +2,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import scrollIntoView from "scroll-into-view";
 
 
+
+
 export default function Header() {
   return (
-    <header className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
+    <header className="bg-bgrosa shadow-md fixed top-0 left-0 w-full z-50"
+    >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <h1 className="text-primary text-2xl font-bold">The Bloom Business</h1>
         {/* <p>Quienes somos</p> */}
