@@ -5,6 +5,8 @@ import Testimonials from "./components/Testimonials";
 import Guarantee from "./components/Guarantee";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import CourseTip from "./components/CourseTip";
+import CourseContent2 from "./components/CourseContent2";
 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
       <Header />{" "}
       <main>
         {" "}
-        <Hero /> <CourseContent /> <Testimonials /> <Guarantee /> <FAQ />{" "}
+        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials /> <Guarantee /> <FAQ />{" "}
       </main>{" "}
       <Footer />{" "}
     </div>

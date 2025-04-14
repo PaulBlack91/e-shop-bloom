@@ -11,12 +11,12 @@ export default function Hero() {
         
         {/* Texto */}
         <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-1">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <h2 className="text-4xl md:text-6xl text-center font-georgia italic  mb-10 leading-tight">
             ¡Descubrí el mundo de la cosmética natural con{" "}
             <span className="text-primary">#ÉxitoEnUnPote!</span>
           </h2>
 
-          <p className="mb-6 text-lg md:text-xl">
+          <p className="mb-8 text-lg text-center md:text-3xl font-sans italic font-bold">
             Un curso 100% online para que aprendas desde cero a crear productos
             naturales, tanto para cuidarte como para emprender. No importa si
             sos principiante o si ya experimentaste con recetas, acá vas a
