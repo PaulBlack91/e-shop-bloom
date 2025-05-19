@@ -22,7 +22,7 @@ export default function CourseTips() {
   return (
     <section
       ref={sectionRef}
-      className="opacity-0 transition-all duration-1000 py-16 px-6 text-dark font-poppins"
+      className="opacity-0 transition-all duration-1000 py-16 px-6 text-dark font-poppins bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-4xl mx-auto space-y-8">

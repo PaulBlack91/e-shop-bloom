@@ -1,27 +1,40 @@
+import { CheckCircle } from "react-feather";
+import img from "../assets/Temario.png";
+
 export default function CourseContent() {
   return (
-    <section className="py-16 bg-secondary text-dark">
-      {" "}
-      <div className="max-w-4xl mx-auto px-4">
-        {" "}
-        <h3 className="text-3xl font-bold mb-8 text-center">
-          ¿Qué vas a aprender?
-        </h3>{" "}
-        <ul className="space-y-4 list-disc list-inside text-lg">
-          {" "}
-          <li>
-            Cómo identificar tu pasión y convertirla en un negocio digital
-            rentable.
-          </li>{" "}
-          <li>Estrategias de marketing para atraer a tu cliente ideal.</li>{" "}
-          <li>
-            Herramientas para crear tu producto digital sin complicaciones
-            técnicas.
-          </li>{" "}
-          <li>Automatización de ventas y atención al cliente.</li>{" "}
-          <li>Escalar tu negocio para generar ingresos pasivos.</li>{" "}
-        </ul>{" "}
-      </div>{" "}
+    <section className="pt-28 pb-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa">
+      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+        {/* Texto principal */}
+        <div className="w-full text-center md:text-left">
+          <h3 className="text-4xl md:text-6xl font-georgia italic mb-10 leading-tight">
+            ¿Qué vas a <span className="text-primary">aprender</span>?
+          </h3>
+
+          <ul className="space-y-6 text-lg md:text-2xl font-sans font-medium">
+            {[
+              "Cómo identificar tu pasión y convertirla en un negocio digital rentable.",
+              "Estrategias de marketing para atraer a tu cliente ideal.",
+              "Herramientas para crear tu producto digital sin complicaciones técnicas.",
+              "Automatización de ventas y atención al cliente.",
+              "Escalar tu negocio para generar ingresos pasivos.",
+            ].map((item, idx) => (
+              <li key={idx} className="flex items-start gap-4">
+                <CheckCircle className="text-primary mt-1" size={28} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="w-full md:w-1/2 flex justify-center items-center">
+          <img
+            src={img}
+            alt="Contenido del curso"
+            className="w-full max-w-[500px] rounded-xl shadow-lg"
+          />
+        </div>
+      </div>
     </section>
   );
 }
