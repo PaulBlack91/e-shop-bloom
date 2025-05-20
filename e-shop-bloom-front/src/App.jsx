@@ -8,6 +8,7 @@ import CourseTip from "./components/CourseTip";
 import CourseContent2 from "./components/CourseContent2";
 import Checkout from "./components/Checkout";
 import WhatsAppButton from "./components/WhatsAppButton";
+import About from "./components/About";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Header />{" "}
       <main>
         {" "}
-        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />  <FAQ /> <Checkout/>  <WhatsAppButton />{" "}
+        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />  <FAQ /> <About />  <Checkout/>  <WhatsAppButton />{" "}
       </main>{" "}
       <Footer />{" "}
     </div>

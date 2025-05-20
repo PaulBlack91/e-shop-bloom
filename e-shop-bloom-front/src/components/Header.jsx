@@ -29,10 +29,7 @@ export default function Header() {
             <FaShoppingCart className="text-lg" />
             Comprar ahora
           </button>
-
-          <button className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200">
-            Registrarse
-          </button>
+       
           <button className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200">
             Iniciar sesión
           </button>
