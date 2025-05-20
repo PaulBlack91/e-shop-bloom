@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useEffect, useRef } from "react";
 
 export default function Carrousel() {
   const testimonials = [
@@ -48,15 +49,35 @@ export default function Carrousel() {
     ],
   };
 
+  const sectionRef = useRef(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sectionRef.current.classList.add("animate-fade-slide");
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+
+
+
+
+
   return (
-    <section
+    <section ref={sectionRef}
       className="py-20  pb-16 bg-cover bg-center bg-no-repeat "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-7xl mx-auto px-4">
-        <h3 className="text-4xl font-bold mb-12 text-center text-gray-800">
+        <h4 className="text-4xl font-bold mb-6  md:text-5xl text-center text-gray-800">
           Lo que dicen nuestros alumnos
-        </h3>
+        </h4>
 
         <Slider {...settings}>
           {testimonials.map((t, i) => (

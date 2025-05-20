@@ -1,9 +1,29 @@
 import { CheckCircle } from "react-feather";
 import img from "../assets/Temario.png";
+import { useEffect, useRef } from "react";
 
 export default function CourseContent() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          sectionRef.current.classList.add("animate-fade-slide");
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="pt-28 pb-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa">
+    <section
+      ref={sectionRef}
+      className="pt-28 pb-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa"
+    >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Texto principal */}
         <div className="w-full text-center md:text-left">
