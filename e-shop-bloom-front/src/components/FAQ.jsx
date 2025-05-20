@@ -48,8 +48,8 @@ export default function FAQ() {
     setOpenIndexes(
       (prev) =>
         prev.includes(index)
-          ? prev.filter((i) => i !== index) // Cierra si ya estaba abierto
-          : [...prev, index] // Abre si no estaba abierto
+          ? prev.filter((i) => i !== index) 
+          : [...prev, index] 
     );
   };
 

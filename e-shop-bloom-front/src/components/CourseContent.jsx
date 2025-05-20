@@ -25,7 +25,6 @@ export default function CourseContent() {
       className="pt-28 pb-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa"
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
-        {/* Texto principal */}
         <div className="w-full text-center md:text-left">
           <h3 className="text-4xl md:text-6xl font-georgia italic mb-10 leading-tight">
             ¿Qué vas a <span className="text-primary">aprender</span>?

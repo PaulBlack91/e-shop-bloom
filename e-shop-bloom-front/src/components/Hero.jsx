@@ -27,7 +27,6 @@ export default function Hero() {
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
-        {/* Texto */}
         <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-1">
           <h2 className="text-4xl md:text-6xl text-center font-georgia italic  mb-10 leading-tight">
             ¡Descubrí el mundo de la cosmética natural con{" "}
@@ -42,7 +41,6 @@ export default function Hero() {
             confianza.
           </p>
 
-          {/* Botón (solo se mueve en mobile) */}
           <div className="mt-20 flex justify-center order-3 md:order-3">
             <button
               onClick={() => {
@@ -61,7 +59,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Imagen (solo cambia posición en mobile) */}
         <div className="w-full md:w-1/2 flex justify-center items-center order-2 md:order-2">
           <img
             src={img}

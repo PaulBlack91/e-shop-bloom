@@ -6,6 +6,8 @@ import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import CourseTip from "./components/CourseTip";
 import CourseContent2 from "./components/CourseContent2";
+import Checkout from "./components/Checkout";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 function App() {
   return (
@@ -14,7 +16,7 @@ function App() {
       <Header />{" "}
       <main>
         {" "}
-        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />  <FAQ />{" "}
+        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />  <FAQ /> <Checkout/>  <WhatsAppButton />{" "}
       </main>{" "}
       <Footer />{" "}
     </div>
