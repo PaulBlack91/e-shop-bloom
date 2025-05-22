@@ -2,6 +2,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef } from "react";
+import useTestimonials from "./useTestimonials";
+
 
 export default function Carrousel() {
   const testimonials = [
@@ -23,31 +25,8 @@ export default function Carrousel() {
     },
   ];
 
-  const settings = {
-    dots: true,
-    arrows: false,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 2,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    cssEase: "ease-in-out",
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+
+  const {settings} = useTestimonials();
 
   const sectionRef = useRef(null);
   useEffect(() => {
