@@ -10,7 +10,7 @@ import Checkout from "./components/Checkout";
 import WhatsAppButton from "./components/WhatsAppButton";
 import About from "./components/About";
 import Learnbonus from "./components/Learnbonus";
-
+import BonusResumen from "./components/Bonussummary";
 function App() {
   return (
     <div className="font-sans">
@@ -18,7 +18,7 @@ function App() {
       <Header />{" "}
       <main>
         {" "}
-        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />  <FAQ /> <About />  <Learnbonus/> <Checkout/>  <WhatsAppButton />{" "}
+        <Hero /> <CourseContent2/> <CourseTip />  <CourseContent /> <Testimonials />   <About />  <Learnbonus/>   <BonusResumen/> <FAQ /> <Checkout/> <WhatsAppButton />{" "}
       </main>{" "}
       <Footer />{" "}
     </div>

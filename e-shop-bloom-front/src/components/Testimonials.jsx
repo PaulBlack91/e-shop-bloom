@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useRef } from "react";
 import useTestimonials from "./useTestimonials";
 
-
 export default function Carrousel() {
   const testimonials = [
     {
@@ -25,8 +24,7 @@ export default function Carrousel() {
     },
   ];
 
-
-  const {settings} = useTestimonials();
+  const { settings } = useTestimonials();
 
   const sectionRef = useRef(null);
   useEffect(() => {
@@ -43,15 +41,10 @@ export default function Carrousel() {
     return () => observer.disconnect();
   }, []);
 
-
-
-
-
-
   return (
-    <section ref={sectionRef}
-      className="py-20  pb-16 bg-cover bg-center bg-no-repeat "
-      style={{ backgroundImage: "url('/bg.jpg')" }}
+    <section
+      ref={sectionRef}
+      className=" bg-bgrosa py-20  pb-16 bg-cover bg-center bg-no-repeat "
     >
       <div className="max-w-7xl mx-auto px-4">
         <h4 className="text-4xl font-bold mb-6  md:text-5xl text-center text-gray-800">

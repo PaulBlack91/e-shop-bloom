@@ -76,7 +76,7 @@ export default function Learnbonus() {
           ))}
         </ul>
 
-        {/* Texto adicional */}
+    
         <h4 className="text-4xl md:text-5xl font-bold mt-16 mb-6">
           ¡Y eso no es todo!
         </h4>
@@ -86,13 +86,13 @@ export default function Learnbonus() {
           que te ayudará a llevar tu negocio al siguiente nivel.
         </p>
 
-        {/* Galería de imágenes */}
-  <div className="grid grid-cols-2 gap-10 max-w-5xl mx-auto mt-12">
+<div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-6xl mx-auto mt-12 px-1">
   {[...Array(7)].map((_, i) => (
     <div
       key={i}
-      className={`flex flex-col items-center bg-cyan-100 rounded-2xl shadow-lg transition-transform duration-500 hover:scale-105 border border-gray-200
-      ${i === 6 ? "col-span-2 mx-auto" : ""}`}
+      className={`flex justify-center transition-transform duration-500 hover:scale-105 ${
+        i === 6 ? "sm:col-span-2" : ""
+      }`}
     >
       <img
         src={`/images/bonus-${i + 1}.png`}
@@ -106,3 +106,7 @@ export default function Learnbonus() {
     </section>
   );
 }
+
+
+
+
