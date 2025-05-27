@@ -30,7 +30,7 @@ export default function CourseContent() {
             ¿Qué vas a <span className="text-primary">aprender</span>?
           </h3>
 
-          <ul className="space-y-6 text-lg md:text-2xl font-sans font-medium">
+          <ul className="space-y-6 text-lg md:text-2xl font-sans font-medium text-left sm:text-center">
             {[
               "Cómo identificar tu pasión y convertirla en un negocio digital rentable.",
               "Estrategias de marketing para atraer a tu cliente ideal.",

@@ -20,7 +20,7 @@ export default function CourseContent2() {
   return (
     <section
       ref={sectionRef}
-      className="opacity-0 transition-all duration-1000 py-10 sm:py-16 md:py-20  bg-bgrosa text-dark text-center px-6 font-poppins x"
+      className="opacity-0 transition-all duration-1000 py-10 sm:py-16 md:py-20  bg-bgrosa text-dark text-center px-6 font-poppins"
     >
       <div className="max-w-3xl mx-auto ">
         <h4 className="text-4xl md:text-5xl font-bold mb-6">

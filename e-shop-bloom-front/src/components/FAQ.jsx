@@ -54,7 +54,7 @@ export default function FAQ() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 bg-secondary text-dark">
+    <section ref={sectionRef} className="py-24 bg-bgrosa text-dark">
       <div className="max-w-4xl mx-auto px-4">
         <h4 className="text-4xl md:text-5xl font-bold mb-6 text-center">
           Preguntas Frecuentes

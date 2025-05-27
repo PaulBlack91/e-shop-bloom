@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="pt-28 pb-16 bg-cover bg-center bg-no-repeat text-dark "
+      className="pt-28 pb-10 sm:pb-14 md:pb-16 bg-cover bg-center bg-no-repeat text-dark "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
@@ -52,7 +52,7 @@ export default function Hero() {
                   });
                 }
               }}
-              className="bg-accent text-white font-bold text-3xl md:text-4xl px-12 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
+              className="bg-accent text-white font-bold text-2xl md:text-4xl px-11 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
             >
              ¡Inscribite ahora!
             </button>
