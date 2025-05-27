@@ -21,7 +21,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 px-4 md:px-8 lg:px-16 bg-cover bg-center bg-no-repeat"
+      className=" py-10 sm:py-16 md:py-20 px-4 md:px-8 lg:px-16 bg-cover bg-center bg-no-repeat"
       id="about"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >

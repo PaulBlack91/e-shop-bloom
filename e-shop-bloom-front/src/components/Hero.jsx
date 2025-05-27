@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="pt-28 pb-10 sm:pb-14 md:pb-16 bg-cover bg-center bg-no-repeat text-dark "
+      className=" py-10 sm:py-16 md:py-20 pt-28 pb-10 sm:pb-14 md:pb-16 bg-cover bg-center bg-no-repeat text-dark "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">

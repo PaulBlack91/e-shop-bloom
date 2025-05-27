@@ -3,7 +3,7 @@ import React from 'react';
 export default function CheckoutOptions() {
   return (
     <section
-      className="bg-cover bg-center bg-no-repeat py-20 px-6"
+      className="bg-cover bg-center bg-no-repeat py-10 px-5 sm:py-16 md:py-20"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-5xl mx-auto text-center text-black drop-shadow-lg">
@@ -31,13 +31,13 @@ export default function CheckoutOptions() {
           <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 md:w-1/2 hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold text-gray-800 mb-3">🌎 Resto del mundo</h3>
             <p className="text-gray-600 mb-6">
-              Pagá con tarjeta internacional vía Stripe desde cualquier país.
+              Pagá con tarjeta internacional desde cualquier país.
             </p>
             <a
               href="https://tu-checkout-stripe.com" // reemplazá con tu link real
               className="inline-block bg-[#6772e5] text-white font-semibold py-3 px-6 rounded-md hover:bg-[#5469d4] transition"
             >
-              Pagar con Stripe
+              Pagar Resto del mundo
             </a>
           </div>
         </div>

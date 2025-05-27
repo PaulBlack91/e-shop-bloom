@@ -44,7 +44,7 @@ export default function Carrousel() {
   return (
     <section
       ref={sectionRef}
-      className=" bg-bgrosa py-10 sm:py-16 md:py-20 pb-16 bg-cover bg-center bg-no-repeat "
+      className="  bg-bgrosa py-10 sm:py-16 md:py-20 pb-16 bg-cover bg-center bg-no-repeat "
     >
       <div className="max-w-7xl mx-auto px-4">
         <h4 className="text-4xl font-bold mb-6  md:text-5xl text-center text-gray-800">
