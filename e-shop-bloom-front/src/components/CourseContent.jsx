@@ -22,7 +22,7 @@ export default function CourseContent() {
   return (
     <section
       ref={sectionRef}
-      className="pt-28 pb-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa"
+      className=" py-10 sm:py-16 md:py-20 bg-cover bg-center bg-no-repeat text-dark bg-bgrosa"
     >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         <div className="w-full text-center md:text-left">
@@ -39,7 +39,7 @@ export default function CourseContent() {
               "Escalar tu negocio para generar ingresos pasivos.",
             ].map((item, idx) => (
               <li key={idx} className="flex items-start gap-4">
-                <CheckCircle className="text-primary mt-1" size={28} />
+                <CheckCircle className="text-primary w-6 h-6 mt-1 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}

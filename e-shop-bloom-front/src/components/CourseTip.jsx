@@ -22,7 +22,7 @@ export default function CourseTips() {
   return (
     <section
       ref={sectionRef}
-      className="opacity-0 transition-all duration-1000 py-16 px-6 text-dark font-poppins bg-no-repeat bg-cover bg-center  "
+      className=" opacity-0 transition-all duration-1000 py-10 px-6 sm:py-16 md:py-20 text-dark font-poppins bg-no-repeat bg-cover bg-center  "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-4xl mx-auto space-y-8">
@@ -46,7 +46,7 @@ export default function CourseTips() {
 
         <div>
           <h4 className="text-2xl font-semibold text-primary mb-6 mt-6">#O una marca chic y divertida:</h4>
-          <ul className="list-disc list-inside pl-4 space-y-1 text-2xl italic">
+          <ul className="list-disc list-inside pl-4 space-y-1 text-2xl italic  text-left sm:text-center">
             <li>Exfoliantes con aromas irresistibles.</li>
             <li>Lipgloss holográficos.</li>
             <li>Mantecas multicolor que destacan en el mercado.</li>
