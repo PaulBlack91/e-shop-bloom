@@ -3,7 +3,7 @@ import React from 'react';
 export default function CheckoutOptions() {
   return (
     <section
-      className="bg-cover bg-center bg-no-repeat py-10 px-5 sm:py-16 md:py-20"
+      className="bg-cover bg-center bg-no-repeat py-10 px-5 sm:py-16 md:py-20 font-poppins"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-5xl mx-auto text-center text-black drop-shadow-lg">

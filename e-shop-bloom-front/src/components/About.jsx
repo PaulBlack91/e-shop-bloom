@@ -42,7 +42,7 @@ export default function About() {
           </div>
 
           
-          <p className="text-xl text-gray-700 leading-relaxed mb-4">
+          <p className="text-xl font-poppins text-gray-700 leading-relaxed mb-4">
             ¡Hola! Soy Paula, la fundadora de{" "}
             <strong>The Bloom Business</strong>.
           </p>
