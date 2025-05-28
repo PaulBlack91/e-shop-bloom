@@ -1,5 +1,6 @@
 import scrollIntoView from "scroll-into-view";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+import { bonos } from "../data/bono";
 
 export default function BonusResumen() {
   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
@@ -33,54 +34,16 @@ export default function BonusResumen() {
       </h4>
 
       <div className="text-left max-w-4xl mx-auto mt-8 space-y-4 text-lg leading-relaxed">
-        <p>
-          <span className="font-bold text-purple-700">BONO #1:</span>{" "}
-          <strong> "Lista de proveedores confiables (de todo el mundo)"</strong>
-          <br />
-          <span>Para que no pierdas tiempo buscando dónde comprar.</span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #2:</span>{" "}
-          <strong>"Empaques sostenibles y presentaciones que enamoran"</strong>
-          <br />
-          <span>Vendé más con una presentación consciente y profesional.</span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #3:</span>{" "}
-          <strong>"Tu negocio de Lip Gloss"</strong>
-          <br />
-          <span>Una línea de productos con bajo costo y alta rotación.</span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #4:</span>{" "}
-          <strong>"Aromaterapia y aceites esenciales"</strong>
-          <br />
-          <span>Aprendé a formular con intención y sentido.</span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #5:</span>{" "}
-          <strong>"Oleados y macerados naturales"</strong>
-          <br />
-          <span>Extraé principios activos como una experta.</span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #6:</span>{" "}
-          <strong>"K-Beauty natural: secretos de la cosmética coreana"</strong>
-          <br />
-          <span>
-            Rutinas, ingredientes y fórmulas inspiradas en la tendencia que
-            arrasa.
-          </span>
-        </p>
-        <p>
-          <span className="font-bold text-purple-700">BONO #7:</span>{" "}
-          <strong>
-            "Más allá de los miedos: Técnicas emocionales para emprender sin
-            rendirte"
-          </strong>
-          <br />
-          <span>Herramientas que te sostienen cuando aparecen los miedos.</span>
-        </p>
+        {bonos.map((bonus) => (
+          <p key={bonus.number}>
+            <span className="font-bold text-purple-700">
+              BONO #{bonus.number}:
+            </span>{" "}
+            <strong>"{bonus.title}"</strong>
+            <br />
+            <span>{bonus.description}</span>
+          </p>
+        ))}
 
         <p className="mt-8 font-bold italic text-black">
           #Acompañamiento real: Grupo exclusivo de WhatsApp para que no lo hagas

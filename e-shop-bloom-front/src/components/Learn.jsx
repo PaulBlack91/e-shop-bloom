@@ -1,39 +1,10 @@
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+import { reasons } from "../data/reason.jsx";
 
 const highlightColors = ["bg-cyan-100", "bg-pink-100"];
 
-const reasons = [
-  <>
-    #Porque querés empezar en la cosmética natural,{" "}
-    <strong>pero no sabés por dónde</strong>.
-  </>,
-  <>
-    #Porque probaste seguir <strong>recetas sueltas</strong> y terminaste{" "}
-    <strong>más confundida que antes</strong>.
-  </>,
-  <>
-    #Porque querés <strong>emprender de verdad</strong>, con{" "}
-    <strong>productos que se vendan</strong> y con estrategia.
-  </>,
-  <>
-    #Porque no querés perder tiempo <strong>(ni plata)</strong> adivinando.
-  </>,
-  <>
-    #Porque necesitás una <strong>guía que te muestre paso a paso</strong>, sin
-    fórmulas complicadas ni ingredientes raros.
-  </>,
-  <>
-    #Porque querés <strong>algo tuyo</strong>, algo que te{" "}
-    <strong>ilusione</strong>, que te <strong>motive</strong>, que te dé{" "}
-    <strong>propósito</strong>.
-  </>,
-  <>
-    #Porque sabés que <strong>ya es hora de dejar de postergarlo</strong>.
-  </>,
-];
-
 export default function Learn() {
-    const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+  const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
 
   return (
     <section
@@ -58,8 +29,6 @@ export default function Learn() {
             </li>
           ))}
         </ul>
-
-       
       </div>
     </section>
   );
