@@ -1,24 +1,11 @@
 import scrollIntoView from "scroll-into-view";
 import img from "../assets/Helados.png";
-import { useEffect, useRef } from "react";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+
 
 export default function Hero() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          sectionRef.current.classList.add("animate-fade-slide");
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(sectionRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+ 
 
   return (
     <section

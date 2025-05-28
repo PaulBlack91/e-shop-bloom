@@ -1,23 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+
 
 export default function CourseContent2() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          sectionRef.current.classList.add("animate-fade-slide");
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
+ 
+  const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
   return (
+    
     <section
       ref={sectionRef}
       className="opacity-0 transition-all duration-1000 py-10 sm:py-16 md:py-20  bg-bgrosa text-dark text-center px-6 font-poppins"

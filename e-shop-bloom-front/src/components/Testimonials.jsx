@@ -1,8 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useEffect, useRef } from "react";
+// import { useEffect, useRef } from "react";
 import useTestimonials from "./useTestimonials";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
 
 export default function Carrousel() {
   const testimonials = [
@@ -26,25 +27,12 @@ export default function Carrousel() {
 
   const { settings } = useTestimonials();
 
-  const sectionRef = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          sectionRef.current.classList.add("animate-fade-slide");
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+  const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
 
   return (
     <section
       ref={sectionRef}
-      className="  bg-bgrosa py-10 sm:py-16 font-poppins md:py-20 pb-16 bg-cover bg-center bg-no-repeat "
+      className="  bg-bgrosa py-5 sm:py-16 font-poppins md:py-20 pb-16 bg-cover bg-center bg-no-repeat "
     >
       <div className="max-w-7xl mx-auto px-4">
         <h4 className="text-4xl font-bold mb-6  md:text-5xl text-center text-gray-800">

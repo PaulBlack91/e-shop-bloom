@@ -2,7 +2,8 @@ import { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+
 
 const faqs = [
   {
@@ -30,20 +31,7 @@ const faqs = [
 
 export default function FAQ() {
   const [openIndexes, setOpenIndexes] = useState([]);
-  const sectionRef = useRef(null);
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          sectionRef.current.classList.add("animate-fade-slide");
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
+ 
   const toggle = (index) => {
     setOpenIndexes(
       (prev) =>
@@ -52,6 +40,8 @@ export default function FAQ() {
           : [...prev, index] 
     );
   };
+    const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+
 
   return (
     <section ref={sectionRef} className="py-10 sm:py-16 md:py-20 font-poppins bg-bgrosa text-dark">

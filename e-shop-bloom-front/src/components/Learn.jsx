@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
 
 const highlightColors = ["bg-cyan-100", "bg-pink-100"];
 
@@ -33,26 +33,12 @@ const reasons = [
 ];
 
 export default function Learn() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          sectionRef.current.classList.add("animate-fade-slide");
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+    const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
 
   return (
     <section
       ref={sectionRef}
-      className=" py-10 sm:py-16 md:py-20 opacity-0 transition-all duration-1000 bg-bgrosa text-dark text-center px-6 font-poppins"
+      className=" py-5 sm:py-16 md:py-20 opacity-0 transition-all duration-1000 bg-bgrosa text-dark text-center px-6 font-poppins"
     >
       <div className="max-w-4xl mx-auto">
         <h4 className="text-4xl md:text-5xl font-bold mb-8">
@@ -60,7 +46,7 @@ export default function Learn() {
           para vos?
         </h4>
 
-        <ul className="space-y-4 text-left">
+        <ul className=" text-xl space-y-4 text-left">
           {reasons.map((reason, idx) => (
             <li
               key={idx}

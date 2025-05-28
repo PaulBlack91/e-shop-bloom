@@ -1,13 +1,20 @@
-import React from 'react';
+import React from "react";
+import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
 
 export default function CheckoutOptions() {
+  const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+
   return (
     <section
+      id="inscripcion"
+      ref={sectionRef}
       className="bg-cover bg-center bg-no-repeat py-10 px-5 sm:py-16 md:py-20 font-poppins"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
       <div className="max-w-5xl mx-auto text-center text-black drop-shadow-lg">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">Elegí tu método de pago</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          Elegí tu método de pago
+        </h2>
         <p className="text-lg md:text-xl mb-12">
           Seleccioná la opción de pago según tu ubicación
         </p>
@@ -17,7 +24,8 @@ export default function CheckoutOptions() {
           <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 md:w-1/2 hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold text-gray-800 mb-3">Argentina</h3>
             <p className="text-gray-600 mb-6">
-              Pagá con tarjeta, transferencia o efectivo a través de MercadoPago.
+              Pagá con tarjeta, transferencia o efectivo a través de
+              MercadoPago.
             </p>
             <a
               href="https://tulink.mercadopago.com" // reemplazá con tu link real
@@ -29,7 +37,9 @@ export default function CheckoutOptions() {
 
           {/* Stripe - Internacional */}
           <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 md:w-1/2 hover:scale-105 transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">🌎 Resto del mundo</h3>
+            <h3 className="text-2xl font-bold text-gray-800 mb-3">
+              🌎 Resto del mundo
+            </h3>
             <p className="text-gray-600 mb-6">
               Pagá con tarjeta internacional desde cualquier país.
             </p>
