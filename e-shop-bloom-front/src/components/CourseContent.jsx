@@ -2,7 +2,7 @@ import { CheckCircle } from "react-feather";
 import img from "../assets/Temario.png";
 import img2 from "../assets/phone.png";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
-import learning from "../data/content";
+import {learning} from "../data/content.jsx";
 
 export default function CourseContent() {
   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
@@ -12,7 +12,7 @@ export default function CourseContent() {
       ref={sectionRef}
       className="py-10 sm:py-16 md:py-20 font-poppins bg-cover bg-center bg-no-repeat text-dark bg-bgrosa"
     >
-      <h3 className="py-5 text-4xl md:text-6xl font-georgia italic mb-10 leading-tight text-center ">
+      <h3 className="py-0 text-4xl md:text-6xl font-georgia italic mb-10 leading-tight text-center ">
         ¿Qué vas a <span className="text-primary">aprender</span>?
       </h3>
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -22,7 +22,7 @@ export default function CourseContent() {
             al emprendimiento real.
           </p>
 
-          <ul className="space-y-6 text-xl md:text-2xl  font-medium text-left">
+          <ul className="space-y-6 text-xl md:text-2xl font-medium text-left">
             {learning.map((item, idx) => (
               <li key={idx} className="flex items-start gap-4">
                 <CheckCircle className="text-primary w-6 h-6 mt-1 shrink-0" />

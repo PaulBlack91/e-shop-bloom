@@ -9,7 +9,7 @@ export default function Learn() {
   return (
     <section
       ref={sectionRef}
-      className=" py-5 sm:py-16 md:py-20 opacity-0 transition-all duration-1000 bg-bgrosa text-dark text-center px-6 font-poppins"
+      className=" pt-10 pb-0 sm:py-16 md:py-20 opacity-0 transition-all duration-1000 bg-bgrosa text-dark text-center px-6 font-poppins"
     >
       <div className="max-w-4xl mx-auto">
         <h4 className="text-4xl md:text-5xl font-bold mb-8">

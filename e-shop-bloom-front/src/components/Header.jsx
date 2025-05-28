@@ -16,7 +16,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-primary shadow-md fixed top-0 left-0 w-full z-50">
+    <header className="bg-primary shadow-md fixed top-0 left-0 w-full z-50 font-poppins">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
         <h1 className="text-bgrosa text-2xl font-bold">The Bloom Business</h1>
@@ -36,14 +36,14 @@ export default function Header() {
         </div>
 
         <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)} className="text-xl text-bgrosa">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="text-xl text-bgrosa ">
             {menuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden py-4 bg-bgrosa px-20 pb-4 space-y-4 shadow-md">
+        <div className="md:hidden py-4 bg-bgrosa px-20 pb-4 space-y-4 shadow-md ">
           <button
             onClick={() => {
               setMenuOpen(false);
@@ -53,9 +53,7 @@ export default function Header() {
           >
             <FaShoppingCart />
             Comprar ahora
-          </button>
-
-          <button className="w-full text-black font-bold py-2">Registrarse</button>
+          </button>          
           <button className="w-full text-black font-bold py-2">Iniciar sesión</button>
         </div>
       )}
