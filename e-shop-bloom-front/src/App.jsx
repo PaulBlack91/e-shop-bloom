@@ -12,6 +12,8 @@ import About from "./components/About";
 import Learnbonus from "./components/Learnbonus";
 import BonusResumen from "./components/Bonussummary";
 import Learn from "./components/Learn";
+import Video from "./components/Video";
+
 function App() {
   return (
     <div className="font-sans">
@@ -19,7 +21,9 @@ function App() {
       <Header />{" "}
       <main>
         {" "}
-        <Hero /> <CourseContent2/> <CourseTip /> <Learn/> <CourseContent /> <Testimonials />  <About />    <Learnbonus/>     <BonusResumen/> <FAQ /> <Checkout/> <WhatsAppButton />{" "}
+        <Hero /> <CourseContent2 /> <CourseTip /> <Learn /> <CourseContent />{" "}
+        <Video /> <Testimonials /> <About /> <Learnbonus /> <BonusResumen />{" "}
+        <FAQ /> <Checkout /> <WhatsAppButton />{" "}
       </main>{" "}
       <Footer />{" "}
     </div>
