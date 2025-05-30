@@ -25,7 +25,7 @@ export default function BonusResumen() {
         />
       </div>
 
-      <h4 className="text-2xl md:text-3xl font-bold mb-4">
+      <h4 className="text-2xl md:text-4xl font-bold mb-4">
         Acceso de por vida a{" "}
         <span className="text-primary">#ÉxitoEnUnPote 2.0</span> y los{" "}
         <span className="bg-cyan-300 text-black px-2">
@@ -33,10 +33,10 @@ export default function BonusResumen() {
         </span>
       </h4>
 
-      <div className="text-left max-w-4xl mx-auto mt-8 space-y-4 text-lg leading-relaxed">
+      <div className="text-left  max-w-4xl mx-auto mt-8 space-y-4 md:text-2xl leading-relaxed">
         {bonos.map((bonus) => (
           <p key={bonus.number}>
-            <span className="font-bold text-purple-700">
+            <span className=" font-bold text-purple-700">
               BONO #{bonus.number}:
             </span>{" "}
             <strong>"{bonus.title}"</strong>
@@ -67,7 +67,7 @@ export default function BonusResumen() {
         <p className="text-6xl md:text-8xl font-extrabold text-green-600">
           $67.00
         </p>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm font-bold text-gray-600 mb-4">
           Haz clic para ver el precio en tu moneda local
         </p>
 
@@ -87,7 +87,7 @@ export default function BonusResumen() {
             ORDENAR AHORA
           </button>
         </div>
-        <p className="text-xs text-red-600 mt-2">
+        <p className="text-xs font-bold text-red-600 mt-2">
           (ATENCIÓN: Precio especial por lanzamiento, pronto aumenta a $120 USD,
           ¡Asegura tu cupo ahora!)
         </p>

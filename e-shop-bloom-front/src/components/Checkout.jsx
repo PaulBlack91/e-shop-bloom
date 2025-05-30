@@ -31,14 +31,14 @@ export default function CheckoutOptions() {
               href="https://tulink.mercadopago.com" // reemplazá con tu link real
               className="inline-block bg-[#009ee3] text-white font-semibold py-3 px-6 rounded-md hover:bg-[#007bbb] transition"
             >
-              Pagar con MercadoPago
+              Pagar en Argentina
             </a>
           </div>
 
           {/* Stripe - Internacional */}
           <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-2xl p-8 md:w-1/2 hover:scale-105 transition-transform duration-300">
             <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              🌎 Resto del mundo
+              🌎 Resto del Mundo
             </h3>
             <p className="text-gray-600 mb-6">
               Pagá con tarjeta internacional desde cualquier país.
@@ -47,7 +47,7 @@ export default function CheckoutOptions() {
               href="https://tu-checkout-stripe.com" // reemplazá con tu link real
               className="inline-block bg-[#6772e5] text-white font-semibold py-3 px-6 rounded-md hover:bg-[#5469d4] transition"
             >
-              Pagar Resto del mundo
+              Pagar Resto del Mundo
             </a>
           </div>
         </div>
