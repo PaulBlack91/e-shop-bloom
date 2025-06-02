@@ -5,8 +5,8 @@ import scrollIntoView from "scroll-into-view";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const scrollToInscripcion = () => {
-    const el = document.getElementById("inscripcion");
+  const scrollToInscripcion = (id) => {
+    const el = document.getElementById(id);
     if (el) {
       scrollIntoView(el, {
         time: 1000,
@@ -19,11 +19,14 @@ export default function Header() {
     <header className="bg-primary shadow-md fixed top-0 left-0 w-full z-50 font-poppins">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
 
-        <h1 className="text-bgrosa text-2xl font-bold">The Bloom Business</h1>
+        <h1  onClick={()=>scrollToInscripcion('hero')}
+        className="text-bgrosa text-2xl font-bold cursor-pointer" >The Bloom Business</h1>
+
+
 
         <div className="hidden md:flex items-center gap-5">
           <button
-            onClick={scrollToInscripcion}
+            onClick={()=>scrollToInscripcion ("inscripcion")}
             className="bg-accent text-bgrosa font-bold px-5 py-2 rounded-full flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
           >
             <FaShoppingCart className="text-lg" />
@@ -47,7 +50,7 @@ export default function Header() {
           <button
             onClick={() => {
               setMenuOpen(false);
-              scrollToInscripcion();
+              scrollToInscripcion ("inscripcion")
             }}
             className="w-full bg-accent text-white font-bold px-4 py-2 rounded-full flex items-center justify-center gap-7 shadow"
           >

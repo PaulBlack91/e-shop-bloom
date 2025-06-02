@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useTestimonials from "./useTestimonials";
-import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+import { useIntersectionAnimation } from "../../hooks/useIntersectionAnimation";
 
 export default function Testimonials() {
   const { settings } = useTestimonials();

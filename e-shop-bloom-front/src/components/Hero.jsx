@@ -2,14 +2,13 @@ import scrollIntoView from "scroll-into-view";
 import img from "../assets/Helados.png";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
 
-
 export default function Hero() {
-   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
- 
+  const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
 
   return (
     <section
       ref={sectionRef}
+      id="hero"
       className=" py-10 sm:py-16 md:py-20 pt-28 pb-10 sm:pb-14 md:pb-16 bg-cover bg-center bg-no-repeat text-dark "
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
@@ -41,7 +40,7 @@ export default function Hero() {
               }}
               className="bg-accent text-white font-bold text-2xl md:text-4xl px-11 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
             >
-             ¡Inscribite ahora!
+              ¡Inscribite ahora!
             </button>
           </div>
         </div>
