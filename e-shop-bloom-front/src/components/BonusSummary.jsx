@@ -1,9 +1,11 @@
 import scrollIntoView from "scroll-into-view";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
 import { bonos } from "../data/bono";
+import AuthModal from "./AuthModal";
 
 export default function BonusResumen() {
   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+
 
   return (
     <section
@@ -69,11 +71,9 @@ export default function BonusResumen() {
         </p>
         <p className="text-sm font-bold text-gray-600 mb-4">
           Haz clic para ver el precio en tu moneda local
-        </p>
-
-        <div className="mt-5 flex justify-center order-3 md:order-3">
+        </p>        <div className="mt-5 flex justify-center order-3 md:order-3">
           <button
-            onClick={() => {
+                      onClick={() => {
               const el = document.getElementById("inscripcion");
               if (el) {
                 scrollIntoView(el, {
@@ -82,16 +82,18 @@ export default function BonusResumen() {
                 });
               }
             }}
+
             className="bg-accent text-white font-bold text-2xl md:text-4xl px-11 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
           >
             ORDENAR AHORA
           </button>
-        </div>
-        <p className="text-xs font-bold text-red-600 mt-2">
+        </div>        <p className="text-xs font-bold text-red-600 mt-2">
           (ATENCIÓN: Precio especial por lanzamiento, pronto aumenta a $120 USD,
           ¡Asegura tu cupo ahora!)
         </p>
       </div>
+
+   
     </section>
   );
 }
