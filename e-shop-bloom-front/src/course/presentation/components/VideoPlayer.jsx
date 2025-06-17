@@ -107,30 +107,30 @@ export default function VideoPlayer({
         <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-30">
           <button
             onClick={togglePlay}
-            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-4 transition-all duration-200 transform hover:scale-110"
+            className="bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full p-3 sm:p-4 transition-all duration-200 transform hover:scale-110"
           >
             {isPlaying ? (
-              <FaPause className="text-3xl text-gray-800" />
+              <FaPause className="text-2xl sm:text-3xl text-gray-800" />
             ) : (
-              <FaPlay className="text-3xl text-gray-800 ml-1" />
+              <FaPlay className="text-2xl sm:text-3xl text-gray-800 ml-1" />
             )}
           </button>
         </div>
 
         {/* Lesson Status Badge */}
         {lesson.isCompleted && (
-          <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full flex items-center gap-2">
-            <FaCheckCircle className="text-sm" />
-            <span className="text-sm font-medium">Completado</span>
+          <div className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-green-500 text-white px-2 sm:px-3 py-1 rounded-full flex items-center gap-1 sm:gap-2">
+            <FaCheckCircle className="text-xs sm:text-sm" />
+            <span className="text-xs sm:text-sm font-medium">Completado</span>
           </div>
         )}
       </div>
 
       {/* Video Controls Bar */}
-      <div className="bg-gray-800 p-4">
+      <div className="bg-gray-800 p-3 sm:p-4">
         {/* Progress Bar */}
         <div 
-          className="w-full h-2 bg-gray-600 rounded-full cursor-pointer mb-4"
+          className="w-full h-1 sm:h-2 bg-gray-600 rounded-full cursor-pointer mb-3 sm:mb-4"
           onClick={handleSeek}
         >
           <div 
@@ -141,15 +141,15 @@ export default function VideoPlayer({
 
         {/* Controls */}
         <div className="flex items-center justify-between text-white">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={togglePlay}
-              className="hover:text-primary transition-colors duration-200"
+              className="hover:text-primary transition-colors duration-200 text-sm sm:text-base"
             >
               {isPlaying ? <FaPause /> : <FaPlay />}
             </button>
 
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-2">
               <FaVolumeUp className="text-sm" />
               <input
                 type="range"
@@ -164,18 +164,18 @@ export default function VideoPlayer({
                     videoRef.current.volume = newVolume;
                   }
                 }}
-                className="w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                className="w-16 sm:w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
               />
             </div>
 
-            <span className="text-sm">
+            <span className="text-xs sm:text-sm">
               {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
 
           <button
             onClick={toggleFullscreen}
-            className="hover:text-primary transition-colors duration-200"
+            className="hover:text-primary transition-colors duration-200 text-sm sm:text-base"
           >
             <FaExpand />
           </button>
@@ -183,14 +183,14 @@ export default function VideoPlayer({
       </div>
 
       {/* Video Info */}
-      <div className="bg-white p-6">
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">
+      <div className="bg-white p-4 sm:p-6">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
           {lesson.title}
         </h3>
-        <p className="text-gray-600 mb-4">
+        <p className="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4">
           {lesson.description}
         </p>
-        <div className="flex items-center gap-4 text-sm text-gray-500">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-500">
           <span>Duración: {lesson.duration}</span>
           {lesson.isCompleted && (
             <span className="text-green-600 font-medium">

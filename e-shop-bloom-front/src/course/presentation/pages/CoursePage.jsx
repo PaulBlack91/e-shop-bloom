@@ -137,7 +137,7 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex">
+    <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row">
       {/* Sidebar */}
       <CourseSidebar
         modules={modules.map(module => ({
@@ -152,20 +152,20 @@ export default function CoursePage() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="max-w-6xl mx-auto p-6 space-y-6">
+      <div className="flex-1 overflow-y-auto pt-16 lg:pt-0">
+        <div className="max-w-6xl mx-auto p-3 sm:p-4 lg:p-6 space-y-4 sm:space-y-6">
           {/* Header */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-3xl font-bold text-gray-800">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="min-w-0">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 truncate">
                   {course?.title || "Cargando..."}
                 </h1>
-                <p className="text-gray-600 mt-2">
+                <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">
                   {currentModule?.title ? `${currentModule.title} - ${currentLesson?.title || ""}` : "Selecciona un módulo para comenzar"}
                 </p>
               </div>
-              <div className="text-right text-sm text-gray-500">
+              <div className="text-left sm:text-right text-xs sm:text-sm text-gray-500 flex-shrink-0">
                 <p>Módulo {currentModule?.order || 0} de {modules.length}</p>
                 {currentModule?.lessons && (
                   <p>
