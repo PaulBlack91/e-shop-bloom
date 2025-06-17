@@ -1,19 +1,31 @@
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import Modal from "./Modal";
 
-export default function AuthModal({ isOpen, onClose }) {
+export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
   const handleGoogleAuth = () => {
     // Aquí implementarías la lógica para autenticación con Google
     console.log("Autenticando con Google...");
     // Por ejemplo: window.location.href = "URL_DE_GOOGLE_AUTH";
-    onClose(); // Cerrar modal después de la acción
+    
+    // Simular autenticación exitosa
+    if (onAuthSuccess) {
+      onAuthSuccess();
+    } else {
+      onClose();
+    }
   };
 
   const handleFacebookAuth = () => {
     // Aquí implementarías la lógica para autenticación con Facebook
     console.log("Autenticando con Facebook...");
     // Por ejemplo: window.location.href = "URL_DE_FACEBOOK_AUTH";
-    onClose(); // Cerrar modal después de la acción
+    
+    // Simular autenticación exitosa
+    if (onAuthSuccess) {
+      onAuthSuccess();
+    } else {
+      onClose();
+    }
   };
 
   return (

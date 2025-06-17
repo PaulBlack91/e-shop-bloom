@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+import AuthModal from "./AuthModal";
 
 export default function CheckoutOptions() {
   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
+
+  const handlePaymentClick = (paymentMethod) => {
+    setSelectedPaymentMethod(paymentMethod);
+    setIsAuthModalOpen(true);
+  };
+
+  const handleAuthSuccess = () => {
+    setIsAuthModalOpen(false);
+    
+    // Redirigir según el método de pago seleccionado
+    if (selectedPaymentMethod === 'argentina') {
+      window.location.href = "https://tulink.mercadopago.com"; // Link real de MercadoPago
+    } else if (selectedPaymentMethod === 'internacional') {
+      window.location.href = "https://tu-checkout-stripe.com"; // Link real de Stripe
+    }
+  };
 
   return (
     <section
@@ -26,13 +45,12 @@ export default function CheckoutOptions() {
             <p className="text-gray-600 mb-6">
               Pagá con tarjeta, transferencia o efectivo a través de
               MercadoPago.
-            </p>
-            <a
-              href="https://tulink.mercadopago.com" // reemplazá con tu link real
+            </p>            <button
+              onClick={() => handlePaymentClick('argentina')}
               className="inline-block bg-[#009ee3] text-white font-semibold py-3 px-6 rounded-md hover:bg-[#007bbb] transition"
             >
               Pagar en Argentina
-            </a>
+            </button>
           </div>
 
           {/* Stripe - Internacional */}
@@ -42,16 +60,21 @@ export default function CheckoutOptions() {
             </h3>
             <p className="text-gray-600 mb-6">
               Pagá con tarjeta internacional desde cualquier país.
-            </p>
-            <a
-              href="https://tu-checkout-stripe.com" // reemplazá con tu link real
+            </p>            <button
+              onClick={() => handlePaymentClick('internacional')}
               className="inline-block bg-[#6772e5] text-white font-semibold py-3 px-6 rounded-md hover:bg-[#5469d4] transition"
             >
               Pagar Resto del Mundo
-            </a>
-          </div>
-        </div>
+            </button>
+          </div>        </div>
       </div>
+
+      {/* Modal de autenticación */}
+      <AuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthSuccess={handleAuthSuccess}
+      />
     </section>
   );
 }

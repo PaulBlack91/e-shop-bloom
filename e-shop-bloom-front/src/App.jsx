@@ -9,7 +9,7 @@ import Checkout from "./components/Checkout";
 import WhatsAppButton from "./components/WhatsAppButton";
 import About from "./components/About";
 import Learnbonus from "./components/Learnbonus";
-import BonusResumen from "./components/Bonussummary";
+import BonusResumen from "./components/BonusSummary";
 import Learn from "./components/Learn";
 import Video from "./components/Video";
 import Testimonials from "./components/Testimonals/Testimonials";
