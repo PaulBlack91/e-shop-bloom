@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import scrollIntoView from "scroll-into-view";
+import AuthModal from "./AuthModal";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const scrollToInscripcion = (id) => {
     const el = document.getElementById(id);
@@ -31,9 +33,10 @@ export default function Header() {
           >
             <FaShoppingCart className="text-lg" />
             Comprar ahora
-          </button>
-       
-          <button className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200">
+          </button>          <button 
+            onClick={() => setIsAuthModalOpen(true)}
+            className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200"
+          >
             Iniciar sesión
           </button>
         </div>
@@ -57,9 +60,20 @@ export default function Header() {
             <FaShoppingCart />
             Comprar ahora
           </button>          
-          <button className="w-full text-black font-bold py-2">Iniciar sesión</button>
+          <button 
+            onClick={() => {
+              setMenuOpen(false);
+              setIsAuthModalOpen(true);
+            }}
+            className="w-full text-black font-bold py-2"
+          >
+            Iniciar sesión          </button>
         </div>
-      )}
+      )}      {/* Modal de autenticación */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </header>
   );
 }
