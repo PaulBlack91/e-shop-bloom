@@ -54,7 +54,7 @@ export default function ResourcesSection({ resources, isLoading }) {
   if (!resources || resources.length === 0) {
     return (
       <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
-        <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">
+        <h3 className=" text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">
           Recursos para descargar
         </h3>
         <div className="text-center py-6 sm:py-8 text-gray-500">

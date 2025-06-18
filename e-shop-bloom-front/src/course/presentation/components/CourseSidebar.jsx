@@ -86,7 +86,7 @@ export default function CourseSidebar({
         </p>
       </div>
 
-      <div className="p-2 sm:p-3 lg:p-4 pb-16 sm:pb-20 lg:pb-4 space-y-2 sm:space-y-3 lg:space-y-4">
+      <div className="p-2 sm:p-3 lg:p-4 pb-16 sm:pb-20 lg:pb-4 space-y-2 sm:space-y-3 lg:space-y-4 bg-cyan-100">
         {modules?.map((module) => (
           <div key={module.id} className="bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
             {/* Module Header */}
@@ -172,7 +172,7 @@ export default function CourseSidebar({
       </button>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-80 xl:w-96 bg-white border-r border-gray-200 h-screen overflow-y-auto scrollbar-thin shadow-lg">
+      <div className="hidden lg:block w-80 xl:w-96 bg-cyan-100 border-r border-gray-200 h-screen overflow-y-auto scrollbar-thin shadow-lg">
         {sidebarContent}
       </div>
 
@@ -187,7 +187,7 @@ export default function CourseSidebar({
           />
           
           {/* Sidebar */}
-          <div className="relative w-80 max-w-[90vw] sm:max-w-[85vw] bg-white h-full overflow-y-auto scrollbar-thin shadow-2xl animate-slide-in-left">
+          <div className="relative w-80 max-w-[90vw] sm:max-w-[85vw] bg-cyan-100 h-full overflow-y-auto scrollbar-thin shadow-2xl animate-slide-in-left">
             {/* Close Button */}
             <button
               onClick={closeMobileMenu}
