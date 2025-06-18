@@ -8,7 +8,7 @@ import courseContainer from "../../CourseContainer.js";
 export default function CoursePage() {
   const { moduleId, lessonId } = useParams();
   const navigate = useNavigate();
-  
+
   const [course, setCourse] = useState(null);
   const [modules, setModules] = useState([]);
   const [currentModule, setCurrentModule] = useState(null);
@@ -23,12 +23,12 @@ export default function CoursePage() {
       setIsLoading(true);
       const [courseData, modulesData] = await Promise.all([
         courseContainer.getCourseUseCase.execute("exito-en-un-pote"),
-        courseContainer.getModulesUseCase.execute("exito-en-un-pote")
+        courseContainer.getModulesUseCase.execute("exito-en-un-pote"),
       ]);
-      
+
       setCourse(courseData);
       setModules(modulesData);
-      
+
       // Si no hay módulo seleccionado, seleccionar el primero
       if (!moduleId && modulesData.length > 0) {
         navigate(`/course/${modulesData[0].id}`, { replace: true });
@@ -62,14 +62,16 @@ export default function CoursePage() {
   // Cargar lección específica
   useEffect(() => {
     if (lessonId && currentModule?.lessons) {
-      const lesson = currentModule.lessons.find(l => l.id === lessonId);
+      const lesson = currentModule.lessons.find((l) => l.id === lessonId);
       setCurrentLesson(lesson);
     }
   }, [lessonId, currentModule]);
 
   const loadModuleData = async (selectedModuleId) => {
     try {
-      const moduleData = await courseContainer.getModuleUseCase.execute(selectedModuleId);
+      const moduleData = await courseContainer.getModuleUseCase.execute(
+        selectedModuleId
+      );
       setCurrentModule(moduleData);
       setResources(moduleData.resources || []);
     } catch (err) {
@@ -92,24 +94,26 @@ export default function CoursePage() {
   const handleLessonComplete = async (lessonId) => {
     try {
       await courseContainer.markLessonCompletedUseCase.execute(lessonId);
-      
+
       // Actualizar el estado local
-      setCurrentModule(prev => ({
+      setCurrentModule((prev) => ({
         ...prev,
-        lessons: prev.lessons.map(lesson =>
+        lessons: prev.lessons.map((lesson) =>
           lesson.id === lessonId ? { ...lesson, isCompleted: true } : lesson
-        )
+        ),
       }));
 
       // Actualizar módulos
-      setModules(prev =>
-        prev.map(module =>
+      setModules((prev) =>
+        prev.map((module) =>
           module.id === moduleId
             ? {
                 ...module,
-                lessons: module.lessons?.map(lesson =>
-                  lesson.id === lessonId ? { ...lesson, isCompleted: true } : lesson
-                )
+                lessons: module.lessons?.map((lesson) =>
+                  lesson.id === lessonId
+                    ? { ...lesson, isCompleted: true }
+                    : lesson
+                ),
               }
             : module
         )
@@ -137,12 +141,15 @@ export default function CoursePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col lg:flex-row">
+    <div
+      className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col lg:flex-row"
+      style={{ backgroundImage: "url('/bg.jpg')" }}
+    >
       {/* Sidebar */}
       <CourseSidebar
-        modules={modules.map(module => ({
+        modules={modules.map((module) => ({
           ...module,
-          lessons: module.id === moduleId ? currentModule?.lessons : []
+          lessons: module.id === moduleId ? currentModule?.lessons : [],
         }))}
         currentModuleId={moduleId}
         currentLessonId={lessonId}
@@ -162,14 +169,19 @@ export default function CoursePage() {
                   {course?.title || "Cargando..."}
                 </h1>
                 <p className="text-sm sm:text-base text-gray-600 mt-1 sm:mt-2">
-                  {currentModule?.title ? `${currentModule.title} - ${currentLesson?.title || ""}` : "Selecciona un módulo para comenzar"}
+                  {currentModule?.title
+                    ? `${currentModule.title} - ${currentLesson?.title || ""}`
+                    : "Selecciona un módulo para comenzar"}
                 </p>
               </div>
               <div className="text-left sm:text-right text-xs sm:text-sm text-gray-500 flex-shrink-0">
-                <p>Módulo {currentModule?.order || 0} de {modules.length}</p>
+                <p>
+                  Módulo {currentModule?.order || 0} de {modules.length}
+                </p>
                 {currentModule?.lessons && (
                   <p>
-                    {currentModule.lessons.filter(l => l.isCompleted).length} de {currentModule.lessons.length} lecciones completadas
+                    {currentModule.lessons.filter((l) => l.isCompleted).length}{" "}
+                    de {currentModule.lessons.length} lecciones completadas
                   </p>
                 )}
               </div>
@@ -184,10 +196,7 @@ export default function CoursePage() {
           />
 
           {/* Resources Section */}
-          <ResourcesSection
-            resources={resources}
-            isLoading={isLoading}
-          />
+          <ResourcesSection resources={resources} isLoading={isLoading} />
         </div>
       </div>
     </div>

@@ -49,7 +49,7 @@ export default function CourseSidebar({
     return (
       <>
         {/* Mobile Menu Button */}
-        <button className="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-3 rounded-lg shadow-lg">
+        <button className="  lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-3 rounded-lg shadow-lg">
           <FaBars className="text-lg" />
         </button>
 
@@ -75,8 +75,8 @@ export default function CourseSidebar({
 
   const sidebarContent = (
     <>
-      <div className="p-4 sm:p-6 border-b border-gray-200">
-        <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
+      <div className="p-4 sm:p-6 border-b bg-bgrosa border-gray-200">
+        <h2 className="text-lg sm:text-xl  font-bold text-gray-800 mb-2">
           #ÉxitoEnUnPote 2.0
         </h2>
         <p className="text-xs sm:text-sm text-gray-600">
@@ -84,7 +84,7 @@ export default function CourseSidebar({
         </p>
       </div>
 
-      <div className="p-3 sm:p-4 pb-20 lg:pb-4">
+      <div className=" p-3 sm:p-4 pb-20 lg:pb-4">
         {modules?.map((module) => (
           <div key={module.id} className="mb-3 sm:mb-4">
             {/* Module Header */}

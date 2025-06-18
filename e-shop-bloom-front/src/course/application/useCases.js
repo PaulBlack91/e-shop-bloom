@@ -1,4 +1,3 @@
-// Casos de uso del curso
 export class GetCourseUseCase {
   constructor(courseRepository) {
     this.courseRepository = courseRepository;
