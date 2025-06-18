@@ -49,20 +49,22 @@ export default function CourseSidebar({
     return (
       <>
         {/* Mobile Menu Button */}
-        <button className="  lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-3 rounded-lg shadow-lg">
-          <FaBars className="text-lg" />
+        <button className="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-2 sm:p-3 rounded-lg shadow-lg animate-pulse">
+          <FaBars className="text-base sm:text-lg" />
         </button>
 
-        <div className="hidden lg:block w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto">
-          <div className="p-6">
+        <div className="hidden lg:block w-80 xl:w-96 bg-white border-r border-gray-200 h-screen overflow-y-auto">
+          <div className="p-3 sm:p-4 lg:p-6">
             <div className="animate-pulse">
-              <div className="h-6 bg-gray-200 rounded mb-4"></div>
+              <div className="h-5 sm:h-6 bg-gray-200 rounded mb-2 sm:mb-4"></div>
+              <div className="h-3 sm:h-4 bg-gray-100 rounded mb-4 sm:mb-6 w-3/4"></div>
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="mb-4">
+                <div key={i} className="mb-3 sm:mb-4 bg-gray-50 rounded-lg p-3">
                   <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="ml-4 space-y-2">
+                  <div className="ml-2 sm:ml-4 space-y-2">
                     <div className="h-3 bg-gray-100 rounded"></div>
-                    <div className="h-3 bg-gray-100 rounded"></div>
+                    <div className="h-3 bg-gray-100 rounded w-5/6"></div>
+                    <div className="h-3 bg-gray-100 rounded w-4/6"></div>
                   </div>
                 </div>
               ))}
@@ -75,8 +77,8 @@ export default function CourseSidebar({
 
   const sidebarContent = (
     <>
-      <div className="p-4 sm:p-6 border-b bg-bgrosa border-gray-200">
-        <h2 className="text-lg sm:text-xl  font-bold text-gray-800 mb-2">
+      <div className="p-3 sm:p-4 lg:p-6 border-b bg-gradient-to-r from-bgrosa to-pink-50 border-gray-200">
+        <h2 className="text-base sm:text-lg lg:text-xl font-bold text-gray-800 mb-1 sm:mb-2">
           #ÉxitoEnUnPote 2.0
         </h2>
         <p className="text-xs sm:text-sm text-gray-600">
@@ -84,43 +86,48 @@ export default function CourseSidebar({
         </p>
       </div>
 
-      <div className=" p-3 sm:p-4 pb-20 lg:pb-4">
+      <div className="p-2 sm:p-3 lg:p-4 pb-16 sm:pb-20 lg:pb-4 space-y-2 sm:space-y-3 lg:space-y-4">
         {modules?.map((module) => (
-          <div key={module.id} className="mb-3 sm:mb-4">
+          <div key={module.id} className="bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
             {/* Module Header */}
             <button
               onClick={() => handleModuleClick(module.id)}
               className={`w-full flex items-center justify-between p-2 sm:p-3 rounded-lg transition-all duration-200 ${
                 currentModuleId === module.id
-                  ? "bg-primary text-white"
+                  ? "bg-primary text-white shadow-md"
                   : "bg-gray-50 hover:bg-gray-100 text-gray-700"
               }`}
             >
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <span className="text-xs sm:text-sm font-semibold flex-shrink-0">
-                  Mod {module.order}
+                <span className="text-xs sm:text-sm font-semibold flex-shrink-0 px-1.5 py-0.5 rounded bg-white/20">
+                  {module.order}
                 </span>
                 <span className="text-xs sm:text-sm font-medium truncate">
                   {module.title}
                 </span>
               </div>
-              {isModuleExpanded(module.id) ? (
-                <FaChevronDown className="text-xs flex-shrink-0" />
-              ) : (
-                <FaChevronRight className="text-xs flex-shrink-0" />
-              )}
+              <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                <span className="text-xs opacity-75 hidden sm:inline">
+                  {module.lessons?.length || 0} lecciones
+                </span>
+                {isModuleExpanded(module.id) ? (
+                  <FaChevronDown className="text-xs" />
+                ) : (
+                  <FaChevronRight className="text-xs" />
+                )}
+              </div>
             </button>
 
             {/* Module Lessons */}
             {isModuleExpanded(module.id) && module.lessons && (
-              <div className="mt-2 ml-2 sm:ml-4 space-y-1">
-                {module.lessons.map((lesson) => (
+              <div className="mt-2 ml-2 sm:ml-4 mr-2 space-y-1 pb-2">
+                {module.lessons.map((lesson, index) => (
                   <button
                     key={lesson.id}
                     onClick={() => handleLessonClick(lesson.id)}
                     className={`w-full flex items-center gap-2 sm:gap-3 p-2 rounded-md text-left transition-all duration-200 ${
                       currentLessonId === lesson.id
-                        ? "bg-accent text-white"
+                        ? "bg-accent text-white shadow-sm"
                         : "hover:bg-gray-50 text-gray-600"
                     }`}
                   >
@@ -130,7 +137,9 @@ export default function CourseSidebar({
                       ) : lesson.id === currentLessonId ? (
                         <FaPlay className="text-primary text-xs sm:text-sm" />
                       ) : (
-                        <FaLock className="text-gray-400 text-xs sm:text-sm" />
+                        <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                          <span className="text-xs font-bold text-gray-400">{index + 1}</span>
+                        </div>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -156,13 +165,14 @@ export default function CourseSidebar({
       {/* Mobile Menu Button */}
       <button 
         onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-3 rounded-lg shadow-lg"
+        className="lg:hidden fixed top-4 left-4 z-50 bg-primary hover:bg-primary/90 text-white p-2 sm:p-3 rounded-lg shadow-lg transition-all duration-200 active:scale-95"
+        aria-label="Abrir menú de módulos"
       >
-        <FaBars className="text-lg" />
+        <FaBars className="text-base sm:text-lg" />
       </button>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-80 bg-white border-r border-gray-200 h-screen overflow-y-auto shadow-lg">
+      <div className="hidden lg:block w-80 xl:w-96 bg-white border-r border-gray-200 h-screen overflow-y-auto scrollbar-thin shadow-lg">
         {sidebarContent}
       </div>
 
@@ -171,18 +181,20 @@ export default function CourseSidebar({
         <div className="lg:hidden fixed inset-0 z-40">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black bg-opacity-50"
+            className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
             onClick={closeMobileMenu}
+            aria-hidden="true"
           />
           
           {/* Sidebar */}
-          <div className="relative w-80 max-w-[85vw] bg-white h-full overflow-y-auto shadow-2xl">
+          <div className="relative w-80 max-w-[90vw] sm:max-w-[85vw] bg-white h-full overflow-y-auto scrollbar-thin shadow-2xl animate-slide-in-left">
             {/* Close Button */}
             <button
               onClick={closeMobileMenu}
-              className="absolute top-4 right-4 z-10 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-gray-100 hover:bg-gray-200 p-1.5 sm:p-2 rounded-full transition-colors active:scale-95"
+              aria-label="Cerrar menú"
             >
-              <FaTimes className="text-gray-600" />
+              <FaTimes className="text-gray-600 text-sm sm:text-base" />
             </button>
             
             {sidebarContent}
