@@ -48,8 +48,11 @@ export default function CourseSidebar({
   if (isLoading) {
     return (
       <>
-        {/* Mobile Menu Button */}
-        <button className="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-2 sm:p-3 rounded-lg shadow-lg animate-pulse">
+        {/* Mobile Menu Button - Solo cuando no está cargando */}
+        <button 
+          className="lg:hidden fixed top-4 left-4 z-50 bg-primary text-white p-2 sm:p-3 rounded-lg shadow-lg animate-pulse"
+          disabled
+        >
           <FaBars className="text-base sm:text-lg" />
         </button>
 
@@ -162,14 +165,16 @@ export default function CourseSidebar({
 
   return (
     <>
-      {/* Mobile Menu Button */}
-      <button 
-        onClick={() => setIsMobileMenuOpen(true)}
-        className="lg:hidden fixed top-4 left-4 z-50 bg-primary hover:bg-primary/90 text-white p-2 sm:p-3 rounded-lg shadow-lg transition-all duration-200 active:scale-95"
-        aria-label="Abrir menú de módulos"
-      >
-        <FaBars className="text-base sm:text-lg" />
-      </button>
+      {/* Mobile Menu Button - Solo visible cuando el sidebar está cerrado */}
+      {!isMobileMenuOpen && (
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="lg:hidden fixed top-4 left-4 z-50 bg-primary hover:bg-primary/90 text-white p-2 sm:p-3 rounded-lg shadow-lg transition-all duration-200 active:scale-95"
+          aria-label="Abrir menú de módulos"
+        >
+          <FaBars className="text-base sm:text-lg" />
+        </button>
+      )}
 
       {/* Desktop Sidebar */}
       <div className="hidden lg:block w-80 xl:w-96 bg-cyan-100 border-r border-gray-200 h-screen overflow-y-auto scrollbar-thin shadow-lg">
@@ -188,16 +193,109 @@ export default function CourseSidebar({
           
           {/* Sidebar */}
           <div className="relative w-80 max-w-[90vw] sm:max-w-[85vw] bg-cyan-100 h-full overflow-y-auto scrollbar-thin shadow-2xl animate-slide-in-left">
-            {/* Close Button */}
-            <button
-              onClick={closeMobileMenu}
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-gray-100 hover:bg-gray-200 p-1.5 sm:p-2 rounded-full transition-colors active:scale-95"
-              aria-label="Cerrar menú"
-            >
-              <FaTimes className="text-gray-600 text-sm sm:text-base" />
-            </button>
+            {/* Header with Close and Hamburger buttons */}
+            <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 bg-gradient-to-r from-bgrosa to-pink-50">
+              {/* Hamburger Button (también puede cerrar) */}
+              <button
+                onClick={closeMobileMenu}
+                className="bg-primary hover:bg-primary/90 text-white p-2 rounded-lg transition-all duration-200 active:scale-95"
+                aria-label="Cerrar menú"
+              >
+                <FaBars className="text-sm sm:text-base" />
+              </button>
+              
+              {/* Título del curso */}
+              <h2 className="text-base sm:text-lg font-bold text-gray-800 flex-1 text-center mx-3">
+                #ÉxitoEnUnPote 2.0
+              </h2>
+              
+              {/* Close Button (X) */}
+              <button
+                onClick={closeMobileMenu}
+                className="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors active:scale-95"
+                aria-label="Cerrar menú"
+              >
+                <FaTimes className="text-gray-600 text-sm sm:text-base" />
+              </button>
+            </div>
             
-            {sidebarContent}
+            {/* Sidebar Content sin el header duplicado */}
+            <div className="p-2 sm:p-3 lg:p-4 pb-16 sm:pb-20 lg:pb-4 space-y-2 sm:space-y-3 lg:space-y-4 bg-cyan-100">
+              <div className="mb-3 sm:mb-4">
+                <p className="text-xs sm:text-sm text-gray-600 text-center">
+                  {modules?.length || 0} módulos disponibles
+                </p>
+              </div>
+              {modules?.map((module) => (
+                <div key={module.id} className="bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  {/* Module Header */}
+                  <button
+                    onClick={() => handleModuleClick(module.id)}
+                    className={`w-full flex items-center justify-between p-2 sm:p-3 rounded-lg transition-all duration-200 ${
+                      currentModuleId === module.id
+                        ? "bg-primary text-white shadow-md"
+                        : "bg-gray-50 hover:bg-gray-100 text-gray-700"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                      <span className="text-xs sm:text-sm font-semibold flex-shrink-0 px-1.5 py-0.5 rounded bg-white/20">
+                        {module.order}
+                      </span>
+                      <span className="text-xs sm:text-sm font-medium truncate">
+                        {module.title}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                      <span className="text-xs opacity-75 hidden sm:inline">
+                        {module.lessons?.length || 0} lecciones
+                      </span>
+                      {isModuleExpanded(module.id) ? (
+                        <FaChevronDown className="text-xs" />
+                      ) : (
+                        <FaChevronRight className="text-xs" />
+                      )}
+                    </div>
+                  </button>
+
+                  {/* Module Lessons */}
+                  {isModuleExpanded(module.id) && module.lessons && (
+                    <div className="mt-2 ml-2 sm:ml-4 mr-2 space-y-1 pb-2">
+                      {module.lessons.map((lesson, index) => (
+                        <button
+                          key={lesson.id}
+                          onClick={() => handleLessonClick(lesson.id)}
+                          className={`w-full flex items-center gap-2 sm:gap-3 p-2 rounded-md text-left transition-all duration-200 ${
+                            currentLessonId === lesson.id
+                              ? "bg-accent text-white shadow-sm"
+                              : "hover:bg-gray-50 text-gray-600"
+                          }`}
+                        >
+                          <div className="flex-shrink-0">
+                            {lesson.isCompleted ? (
+                              <FaCheckCircle className="text-green-500 text-xs sm:text-sm" />
+                            ) : lesson.id === currentLessonId ? (
+                              <FaPlay className="text-primary text-xs sm:text-sm" />
+                            ) : (
+                              <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 border-gray-300 flex items-center justify-center">
+                                <span className="text-xs font-bold text-gray-400">{index + 1}</span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs sm:text-sm font-medium truncate">
+                              {lesson.title}
+                            </p>
+                            <p className="text-xs opacity-75">
+                              {lesson.duration}
+                            </p>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
