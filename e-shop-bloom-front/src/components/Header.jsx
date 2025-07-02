@@ -17,6 +17,11 @@ export default function Header() {
     }
   };
 
+  const handleLoginClick = () => {
+    setMenuOpen(false);
+    setIsAuthModalOpen(true);
+  };
+
   return (
     <header className="bg-primary shadow-md fixed top-0 left-0 w-full z-50 font-poppins">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -34,9 +39,9 @@ export default function Header() {
           >
             <FaShoppingCart className="text-lg" />
             Comprar ahora
-          </button>{" "}
+          </button>
           <button
-            onClick={() => setIsAuthModalOpen(true)}
+            onClick={handleLoginClick}
             className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200"
           >
             Iniciar sesión
@@ -65,16 +70,14 @@ export default function Header() {
             Comprar ahora
           </button>
           <button
-            onClick={() => {
-              setMenuOpen(false);
-              setIsAuthModalOpen(true);
-            }}
+            onClick={handleLoginClick}
             className="w-full text-black font-bold py-2"
           >
-            Iniciar sesión{" "}
+            Iniciar sesión
           </button>
         </div>
-      )}{" "}
+      )}
+      
       {/* Modal de autenticación */}
       <AuthModal
         isOpen={isAuthModalOpen}
