@@ -25,7 +25,8 @@ export default function Dashboard() {
     const userData = localStorage.getItem('userData');
     
     if (!token || !userData) {
-      navigate('/login');
+      console.log('No hay datos de autenticación, redirigiendo al inicio');
+      navigate('/');
       return;
     }
 
@@ -33,9 +34,10 @@ export default function Dashboard() {
     try {
       const parsedUser = JSON.parse(userData);
       setUser(parsedUser);
+      console.log('Usuario cargado en dashboard:', parsedUser.name || parsedUser.email);
     } catch (error) {
       console.error('Error parsing user data:', error);
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate]);
 

@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaGoogle, FaFacebook, FaEye, FaEyeSlash, FaSpinner } from "react-icons/fa";
+import {
+  FaGoogle,
+  FaFacebook,
+  FaEye,
+  FaEyeSlash,
+  FaSpinner,
+} from "react-icons/fa";
 import Modal from "./Modal";
 
 export default function AuthModal({ isOpen, onClose, mode = "login" }) {
@@ -8,7 +14,7 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
   const [authMode, setAuthMode] = useState(mode); // "login" o "register"
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,66 +28,53 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
       [e.target.name]: e.target.value,
     });
     // Limpiar error al escribir
-    if (error) setError('');
+    if (error) setError("");
   };
 
   const handleSuccessfulAuth = (userData) => {
     // Guardar datos del usuario en localStorage
-    localStorage.setItem('authToken', 'mock-jwt-token-123');
-    localStorage.setItem('userData', JSON.stringify(userData));
-    
+    localStorage.setItem("authToken", "mock-jwt-token-123");
+    localStorage.setItem("userData", JSON.stringify(userData));
+
     // Cerrar modal y navegar al dashboard
     onClose();
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleGoogleAuth = async () => {
     setIsLoading(true);
-    setError('');
-    
+    setError("");
+
     try {
-      // Simular autenticación con Google
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      const userData = {
-        id: '1',
-        name: 'Usuario Google',
-        email: 'google@test.com',
-        hasAllCourses: true, // Google user tiene acceso completo
-        purchasedCourses: [1, 2, 3],
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
-      };
-      
-      handleSuccessfulAuth(userData);
+      // Redirigir al backend para iniciar OAuth con Google
+      window.location.href = "http://localhost:3001/auth/google";
     } catch (err) {
-      setError('Error al autenticar con Google');
-    } finally {
+      setError("Error al iniciar autenticación con Google", err);
       setIsLoading(false);
     }
   };
 
   const handleFacebookAuth = async () => {
     setIsLoading(true);
-    setError('');
-    
+    setError("");
+
     try {
       // Simular autenticación con Facebook
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
       const userData = {
-        id: '2',
-        name: 'Usuario Facebook',
-        email: 'facebook@test.com',
+        id: "2",
+        name: "Usuario Facebook",
+        email: "facebook@test.com",
         hasAllCourses: false,
         purchasedCourses: [1], // Facebook user solo tiene un curso
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       };
-      
+
       handleSuccessfulAuth(userData);
     } catch (err) {
-      setError('Error al autenticar con Facebook');
+      setError("Error al autenticar con Facebook", err);
     } finally {
       setIsLoading(false);
     }
@@ -90,30 +83,33 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
 
     try {
       // Validaciones básicas
-      if (authMode === "register" && formData.password !== formData.confirmPassword) {
-        throw new Error('Las contraseñas no coinciden');
+      if (
+        authMode === "register" &&
+        formData.password !== formData.confirmPassword
+      ) {
+        throw new Error("Las contraseñas no coinciden");
       }
 
       // Simular autenticación tradicional
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
       const userData = {
-        id: '3',
-        name: formData.name || 'Usuario Registrado',
+        id: "3",
+        name: formData.name || "Usuario Registrado",
         email: formData.email,
-        hasAllCourses: formData.email === 'admin@test.com',
-        purchasedCourses: formData.email === 'admin@test.com' ? [1, 2, 3] : [1],
+        hasAllCourses: formData.email === "admin@test.com",
+        purchasedCourses: formData.email === "admin@test.com" ? [1, 2, 3] : [1],
         createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
       };
 
       handleSuccessfulAuth(userData);
     } catch (err) {
-      setError(err.message || 'Error en la autenticación');
+      setError(err.message || "Error en la autenticación");
     } finally {
       setIsLoading(false);
     }
@@ -136,33 +132,6 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
           </div>
         )}
 
-        {/* Quick Login for Testing */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <p className="text-sm text-blue-800 mb-3 font-medium">🚀 Prueba rápida:</p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                setFormData({ email: 'admin@test.com', password: '123456' });
-                setTimeout(() => handleSubmit({ preventDefault: () => {} }), 100);
-              }}
-              disabled={isLoading}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white text-xs py-2 px-3 rounded-md transition-colors"
-            >
-              Admin (Todos los cursos)
-            </button>
-            <button
-              onClick={() => {
-                setFormData({ email: 'user@test.com', password: '123456' });
-                setTimeout(() => handleSubmit({ preventDefault: () => {} }), 100);
-              }}
-              disabled={isLoading}
-              className="flex-1 bg-gray-600 hover:bg-gray-700 disabled:opacity-50 text-white text-xs py-2 px-3 rounded-md transition-colors"
-            >
-              Usuario (1 curso)
-            </button>
-          </div>
-        </div>
-
         {/* Botones de autenticación social */}
         <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
           <button
@@ -176,15 +145,27 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
               <div className="flex items-center justify-center w-6 sm:w-8 h-6 sm:h-8">
                 {/* Logo de Google con colores oficiales */}
                 <svg viewBox="0 0 24 24" className="w-5 sm:w-6 h-5 sm:h-6">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                  <path
+                    fill="#4285F4"
+                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                  />
+                  <path
+                    fill="#34A853"
+                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                  />
+                  <path
+                    fill="#FBBC05"
+                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                  />
+                  <path
+                    fill="#EA4335"
+                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                  />
                 </svg>
               </div>
             )}
             <span className="text-base sm:text-lg">
-              {isLoading ? 'Autenticando...' : 'Continuar con Google'}
+              {isLoading ? "Autenticando..." : "Continuar con Google"}
             </span>
           </button>
 
@@ -199,7 +180,7 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
               <FaFacebook className="text-xl sm:text-2xl" />
             )}
             <span className="text-base sm:text-lg">
-              {isLoading ? 'Autenticando...' : 'Continuar con Facebook'}
+              {isLoading ? "Autenticando..." : "Continuar con Facebook"}
             </span>
           </button>
         </div>
@@ -218,7 +199,10 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           {authMode === "register" && (
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Nombre completo
               </label>
               <input
@@ -234,22 +218,29 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
           )}
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Correo electrónico
-            </label>              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                disabled={isLoading}
-                className="w-full px-3 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm sm:text-base disabled:opacity-50"
-                required
-              />
+            </label>{" "}
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              disabled={isLoading}
+              className="w-full px-3 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm sm:text-base disabled:opacity-50"
+              required
+            />
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Contraseña
             </label>
             <div className="relative">
@@ -278,7 +269,10 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
 
           {authMode === "register" && (
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Confirmar contraseña
               </label>
               <input
@@ -301,10 +295,14 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
             {isLoading ? (
               <>
                 <FaSpinner className="animate-spin" />
-                {authMode === "login" ? "Iniciando sesión..." : "Creando cuenta..."}
+                {authMode === "login"
+                  ? "Iniciando sesión..."
+                  : "Creando cuenta..."}
               </>
+            ) : authMode === "login" ? (
+              "Iniciar Sesión"
             ) : (
-              authMode === "login" ? "Iniciar Sesión" : "Crear Cuenta"
+              "Crear Cuenta"
             )}
           </button>
         </form>
@@ -312,7 +310,9 @@ export default function AuthModal({ isOpen, onClose, mode = "login" }) {
         {/* Toggle entre login y registro */}
         <div className="text-center mt-4 sm:mt-6">
           <p className="text-sm text-gray-600">
-            {authMode === "login" ? "¿No tienes una cuenta?" : "¿Ya tienes una cuenta?"}{" "}
+            {authMode === "login"
+              ? "¿No tienes una cuenta?"
+              : "¿Ya tienes una cuenta?"}{" "}
             <button
               onClick={toggleAuthMode}
               className="text-primary font-semibold hover:underline"
