@@ -65,3 +65,132 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 
+/* Estilos avanzados para el botón de inscripción */
+.hero-btn {
+  position: relative;
+  overflow: hidden; /* Cambio de vuelta a hidden para el efecto carrousel */
+  background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+  box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Carrousel de colores que se desliza de izquierda a derecha */
+.hero-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(252, 231, 243, 0.6),  /* bg-pink-200 */
+    rgba(191, 219, 254, 0.7),  /* bg-blue-200 */
+    rgba(196, 181, 253, 0.6),  /* bg-purple-200 */
+    rgba(14, 233, 227, 0.7)    /* bg-accent (#0CE9E3) */
+  );
+  animation: colorCarousel 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Segundo carrousel con colores más intensos */
+.hero-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(236, 72, 153, 0.3),   /* rosa intenso */
+    rgba(59, 130, 246, 0.4),   /* azul intenso */
+    rgba(139, 92, 246, 0.3),   /* púrpura intenso */
+    rgba(14, 233, 227, 0.4)    /* accent intenso */
+  );
+  animation: colorCarousel 3s ease-in-out infinite 1.5s; /* Delay para efecto contrapunto */
+  pointer-events: none;
+}
+
+/* Efecto hover con carrousel acelerado */
+.hero-btn:hover::before {
+  animation: fastColorCarousel 1s ease-in-out infinite;
+}
+
+.hero-btn:hover::after {
+  animation: fastColorCarousel 1s ease-in-out infinite 0.5s;
+}
+
+/* Para la tercera onda púrpura necesitamos usar una clase adicional */
+.hero-btn:hover {
+  background: linear-gradient(135deg, #db2777, #7c3aed, #2563eb);
+  box-shadow: 0 15px 35px rgba(236, 72, 153, 0.5), 
+              0 0 0 0 rgba(236, 72, 153, 0.4),
+              0 0 0 10px rgba(139, 92, 246, 0.2),
+              0 0 0 20px rgba(59, 130, 246, 0.1);
+  transform: translateY(-3px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero-btn:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+}
+
+.hero-btn-pulse {
+  animation: buttonPulse 3s ease-in-out infinite;
+}
+
+/* Elemento adicional para el efecto púrpura */
+.hero-btn-pulse::before {
+  background: rgba(139, 92, 246, 0.2) !important;
+  animation: purplePing 3s ease-in-out infinite 0.4s !important;
+}
+
+.hero-btn-pulse:hover::before {
+  animation: expandedPurplePing 1.5s ease-out 0.2s !important;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3), 0 0 0 0 rgba(236, 72, 153, 0.7);
+  }
+  50% {
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3), 0 0 0 15px rgba(236, 72, 153, 0);
+  }
+}
+
+@keyframes colorCarousel {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes fastColorCarousel {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+

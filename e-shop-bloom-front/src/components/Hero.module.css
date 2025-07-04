@@ -1,0 +1,72 @@
+/* Estilos modularizados para la imagen del Hero */
+.heroImage {
+  animation: float 6s ease-in-out infinite;
+  transform: perspective(1000px) rotateY(-3deg);
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2)) 
+          drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15))
+          contrast(1.1) 
+          saturate(1.05);
+  position: relative;
+  z-index: 2;
+}
+
+.imageContainer {
+  position: relative;
+  /* Sin efectos de fondo para mantener solo el contorno de la imagen */
+}
+
+.heroImageWrapper {
+  position: relative;
+}
+
+.heroImageWrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.15), transparent);
+  border-radius: 50%;
+  animation: shadowPulse 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) perspective(1000px) rotateY(-3deg);
+  }
+  50% {
+    transform: translateY(-15px) perspective(1000px) rotateY(-3deg);
+  }
+}
+
+@keyframes shadowPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+    opacity: 0.2;
+  }
+}
+
+/* Responsive design */
+@media (min-width: 640px) {
+  .heroImage {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroImage {
+    max-width: 650px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .heroImage {
+    max-width: 700px;
+  }
+}

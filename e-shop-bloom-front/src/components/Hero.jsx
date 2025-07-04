@@ -1,6 +1,7 @@
 import scrollIntoView from "scroll-into-view";
 import img from "../assets/Helados.png";
 import { useIntersectionAnimation } from "../hooks/useIntersectionAnimation";
+import styles from "./Hero.module.css";
 
 export default function Hero() {
   const sectionRef = useIntersectionAnimation("animate-fade-slide", 0.1);
@@ -38,7 +39,7 @@ export default function Hero() {
                   });
                 }
               }}
-              className="bg-accent text-white font-bold text-2xl md:text-4xl px-11 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
+              className="hero-btn hero-btn-pulse bg-accent text-white font-bold text-2xl md:text-4xl px-11 py-6 rounded-full transition-all duration-300 ease-in-out"
             >
               ¡Inscribite ahora!
             </button>
@@ -46,11 +47,15 @@ export default function Hero() {
         </div>
 
         <div className="w-full md:w-1/2 flex justify-center items-center order-2 md:order-2">
-          <img
-            src={img}
-            alt="Hero"
-            className="w-full max-w-[500px] sm:max-w-[550px] lg:max-w-[650px] xl:max-w-[700px] mx-auto"
-          />
+          <div className={styles.heroImageWrapper}>
+            <div className={styles.imageContainer}>
+              <img
+                src={img}
+                alt="Hero"
+                className={`${styles.heroImage} w-full max-w-[500px] sm:max-w-[550px] lg:max-w-[650px] xl:max-w-[700px] mx-auto`}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
