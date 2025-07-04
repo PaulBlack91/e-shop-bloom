@@ -39,7 +39,7 @@ export default function Modal({ isOpen, onClose, title, children, size = "md" })
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="modal-overlay"
         >
           {/* Overlay/Backdrop */}
           <motion.div
@@ -56,7 +56,7 @@ export default function Modal({ isOpen, onClose, title, children, size = "md" })
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.3 }}
-            className={`relative bg-white rounded-2xl shadow-2xl w-full ${sizeClasses[size]} max-h-[90vh] overflow-y-auto`}
+            className={`modal-content bg-white rounded-2xl shadow-2xl w-full ${sizeClasses[size]} max-h-[90vh] overflow-y-auto mx-4`}
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">

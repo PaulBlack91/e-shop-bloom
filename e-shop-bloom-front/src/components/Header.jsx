@@ -23,11 +23,11 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-primary shadow-md fixed top-0 left-0 w-full z-50 font-poppins">
+    <header className="bg-primary/95 backdrop-blur-md shadow-lg fixed top-0 left-0 w-full z-50 font-poppins border-b border-white/10 transition-all duration-300">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <h1
           onClick={() => scrollToInscripcion("hero")}
-          className="text-bgrosa text-2xl font-bold cursor-pointer"
+          className="text-bgrosa text-2xl font-bold cursor-pointer hover:text-accent transition-all duration-300 transform hover:scale-105 select-none"
         >
           The Bloom Business
         </h1>
@@ -35,14 +35,14 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-5">
           <button
             onClick={() => scrollToInscripcion("inscripcion")}
-            className="bg-accent text-bgrosa font-bold px-5 py-2 rounded-full flex items-center gap-2 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out"
+            className="unified-btn unified-btn--primary flex items-center gap-2"
           >
-            <FaShoppingCart className="text-lg" />
+            <FaShoppingCart className="btn-icon text-lg" />
             Comprar ahora
           </button>
           <button
             onClick={handleLoginClick}
-            className="text-bgrosa font-bold px-4 py-2 hover:text-black transition duration-200"
+            className="unified-btn unified-btn--secondary"
           >
             Iniciar sesión
           </button>
@@ -51,27 +51,27 @@ export default function Header() {
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-xl text-bgrosa "
+            className="text-xl text-bgrosa hover:text-accent transition-all duration-300 p-2 rounded-lg hover:bg-bgrosa/10 backdrop-blur-sm"
           >
-            {menuOpen ? <FaTimes /> : <FaBars />}
+            {menuOpen ? <FaTimes className="rotate-90 transition-transform duration-300" /> : <FaBars className="transition-transform duration-300" />}
           </button>
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden py-4 bg-bgrosa px-20 pb-4 space-y-4 shadow-md ">
+        <div className="md:hidden py-6 bg-bgrosa/95 backdrop-blur-md px-6 pb-6 space-y-4 shadow-xl border-t border-white/10 animate-slide-down">
           <button
             onClick={() => {
               setMenuOpen(false);
               scrollToInscripcion("inscripcion");
             }}
-            className="w-full bg-accent text-white font-bold px-4 py-2 rounded-full flex items-center justify-center gap-7 shadow"
+            className="unified-btn unified-btn--primary unified-btn--mobile"
           >
-            <FaShoppingCart />
+            <FaShoppingCart className="btn-icon" />
             Comprar ahora
           </button>
           <button
             onClick={handleLoginClick}
-            className="w-full text-black font-bold py-2"
+            className="unified-btn unified-btn--secondary unified-btn--mobile"
           >
             Iniciar sesión
           </button>
