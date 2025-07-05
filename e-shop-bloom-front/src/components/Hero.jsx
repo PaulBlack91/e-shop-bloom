@@ -17,7 +17,7 @@ export default function Hero() {
         <div className="w-full md:w-1/2 text-center md:text-left order-1 md:order-1">
           <h2 className="text-4xl md:text-6xl text-center font-georgia italic  mb-5 leading-tight">
             ¡Descubrí el mundo de la cosmética natural con{" "}
-            <span className="text-primary">#ÉxitoEnUnPote!</span>
+            <span className="bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text text-transparent font-semibold">#ÉxitoEnUnPote!</span>
           </h2>
 
           <p className="mb-5 text-lg text-center md:text-3xl font-sans italic font-bold">

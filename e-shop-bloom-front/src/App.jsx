@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Importar páginas
 import LandingPage from './pages/LandingPage';
-import SimpleLandingPage from './pages/SimpleLandingPage';
 import Dashboard from './pages/Dashboard';
 import CoursePage from './pages/CoursePage';
 import AuthCallback from './pages/AuthCallback';
@@ -17,9 +16,6 @@ function App() {
           
           {/* Callback de autenticación */}
           <Route path="/auth/callback" element={<AuthCallback />} />
-          
-          {/* Landing alternativo */}
-          <Route path="/simple" element={<SimpleLandingPage />} />
           
           {/* Dashboard del usuario */}
           <Route path="/dashboard" element={<Dashboard />} />

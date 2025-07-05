@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
 import CourseSidebar from '../course/presentation/components/CourseSidebar';
 import VideoPlayer from '../course/presentation/components/VideoPlayer';
 import ResourcesSection from '../course/presentation/components/ResourcesSection';
@@ -12,6 +13,7 @@ export default function CoursePage() {
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     // Verificar autenticación
@@ -135,6 +137,7 @@ export default function CoursePage() {
 
   const handleLessonSelect = (lessonId) => {
     setCurrentLessonId(lessonId);
+    setSidebarOpen(false); // Cerrar sidebar en móvil al seleccionar lección
     
     // Encontrar la lección seleccionada para obtener su información
     const selectedLesson = modules
@@ -160,64 +163,92 @@ export default function CoursePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-bgrosa flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <CourseSidebar
-        modules={modules}
-        currentModuleId={currentModuleId}
-        currentLessonId={currentLessonId}
-        onModuleSelect={handleModuleSelect}
-        onLessonSelect={handleLessonSelect}
-        isLoading={false}
-      />
-
-      {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
-        {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={handleBackToDashboard}
-                className="text-primary hover:text-primary/80 transition-colors text-sm font-medium"
-              >
-                ← Volver al Dashboard
-              </button>
-              <div className="hidden sm:block w-px h-6 bg-gray-300"></div>
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-gray-800">
-                  {currentModule?.title || 'Cargando...'}
-                </h1>
-                <p className="text-sm text-gray-600">
-                  {currentLesson?.title || 'Selecciona una lección'}
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
-                <div className="text-sm font-medium text-gray-800">{user?.name}</div>
-                <div className="text-xs text-gray-600">{user?.email}</div>
-              </div>
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold">
-                {user?.name?.charAt(0)?.toUpperCase()}
-              </div>
+    <div className="min-h-screen bg-bgrosa flex flex-col">
+      {/* Header */}
+      <header className="bg-gradient-to-r from-pink-500/85 via-purple-500/90 to-blue-500/85 backdrop-blur-md shadow-lg border-b border-white/10 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <img 
+              src="/Helados.png" 
+              alt="Logo" 
+              className="h-10 w-10"
+            />
+            <button
+              onClick={handleBackToDashboard}
+              className="unified-btn unified-btn--secondary flex items-center gap-2"
+            >
+              <FaArrowLeft className="btn-icon" />
+              Volver al Dashboard
+            </button>
+            <div className="hidden md:block w-px h-6 bg-white/20"></div>
+            <div className="hidden md:block">
+              <h1 className="text-xl font-bold text-white">
+                {currentModule?.title || 'Cargando...'}
+              </h1>
+              <p className="text-sm text-white/80">
+                {currentLesson?.title || 'Selecciona una lección'}
+              </p>
             </div>
           </div>
-        </header>
+          
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <div className="text-sm font-medium text-white">{user?.name}</div>
+              <div className="text-xs text-white/80">{user?.email}</div>
+            </div>
+            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white font-bold border border-white/30">
+              {user?.name?.charAt(0)?.toUpperCase()}
+            </div>
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="md:hidden text-xl text-white hover:text-accent transition-all duration-300 p-2 rounded-lg hover:bg-white/10"
+            >
+              {sidebarOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+        </div>
+      </header>
 
-        {/* Course Content */}
-        <div className="flex-1 overflow-hidden">
-          <div className="h-full flex flex-col lg:flex-row">
+      {/* Main Content */}
+      <div className="flex-1 flex">
+        {/* Sidebar - Fixed on mobile, relative on desktop */}
+        <div className={`
+          fixed md:relative inset-y-0 left-0 z-50 w-80 
+          transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
+          md:translate-x-0 transition-transform duration-300 ease-in-out 
+          md:transition-none bg-white shadow-lg md:shadow-none
+        `}>
+          <CourseSidebar
+            modules={modules}
+            currentModuleId={currentModuleId}
+            currentLessonId={currentLessonId}
+            onModuleSelect={handleModuleSelect}
+            onLessonSelect={handleLessonSelect}
+            isLoading={false}
+            onClose={() => setSidebarOpen(false)}
+          />
+        </div>
+
+        {/* Overlay for mobile */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
+        {/* Course Content Area */}
+        <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col lg:flex-row">
             {/* Video Section */}
-            <div className="flex-1 bg-black relative">
+            <div className="flex-1 bg-black relative min-h-[60vh] lg:min-h-full">
               {currentLesson ? (
                 <VideoPlayer
                   lesson={currentLesson}
@@ -232,20 +263,33 @@ export default function CoursePage() {
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center text-white">
+                  <div className="text-center text-white p-8">
+                    <div className="mb-4">
+                      <img 
+                        src="/Helados.png" 
+                        alt="Logo" 
+                        className="h-16 w-16 mx-auto opacity-50"
+                      />
+                    </div>
                     <h3 className="text-xl font-semibold mb-2">
                       Selecciona una lección para comenzar
                     </h3>
-                    <p className="text-gray-300">
+                    <p className="text-gray-300 mb-4">
                       Usa el menú lateral para navegar entre las lecciones
                     </p>
+                    <button
+                      onClick={() => setSidebarOpen(true)}
+                      className="md:hidden bg-gradient-to-r from-pink-500 to-blue-500 text-white px-6 py-2 rounded-lg hover:from-pink-600 hover:to-blue-600 transition-all duration-300"
+                    >
+                      Ver Lecciones
+                    </button>
                   </div>
                 </div>
               )}
             </div>
 
             {/* Resources Section */}
-            <div className="w-full lg:w-80 xl:w-96 bg-white border-l border-gray-200">
+            <div className="w-full lg:w-80 xl:w-96 bg-white/95 backdrop-blur-sm border-l border-white/20 shadow-lg">
               <ResourcesSection
                 lesson={currentLesson}
                 module={currentModule}

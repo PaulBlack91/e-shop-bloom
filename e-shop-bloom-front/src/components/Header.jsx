@@ -23,14 +23,18 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-primary/95 backdrop-blur-md shadow-lg fixed top-0 left-0 w-full z-50 font-poppins border-b border-white/10 transition-all duration-300">
+    <header className="bg-gradient-to-r from-pink-500/85 via-purple-500/90 to-blue-500/85 backdrop-blur-md shadow-lg fixed top-0 left-0 w-full z-50 font-poppins border-b border-white/10 transition-all duration-300">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <h1
-          onClick={() => scrollToInscripcion("hero")}
-          className="text-bgrosa text-2xl font-bold cursor-pointer hover:text-accent transition-all duration-300 transform hover:scale-105 select-none"
-        >
-          The Bloom Business
-        </h1>
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToInscripcion("hero")}>
+          <img 
+            src="/Helados.png" 
+            alt="Logo" 
+            className="h-10 w-10 hover:animate-pulse transition-all duration-300"
+          />
+          <h1 className="text-bgrosa text-2xl font-bold hover:text-accent transition-all duration-300 transform hover:scale-105 select-none">
+            The Bloom Business
+          </h1>
+        </div>
 
         <div className="hidden md:flex items-center gap-5">
           <button
@@ -58,7 +62,7 @@ export default function Header() {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden py-6 bg-bgrosa/95 backdrop-blur-md px-6 pb-6 space-y-4 shadow-xl border-t border-white/10 animate-slide-down">
+        <div className="md:hidden py-6 bg-gradient-to-r from-pink-500/90 via-purple-500/95 to-blue-500/90 backdrop-blur-md px-6 pb-6 space-y-4 shadow-xl border-t border-white/10 animate-slide-down">
           <button
             onClick={() => {
               setMenuOpen(false);
